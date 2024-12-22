@@ -1,9 +1,42 @@
 import { createBrowserRouter } from "react-router-dom";
+import MainLayout from "../components/MainLayout/MainLayout";
+import AllVolunteers from "../components/pages/AllVolunteers";
+import Home from "../components/pages/Home";
+import AddVolunteer from "../components/pages/AddVolunteer";
+import ManagePost from "../components/pages/ManagePost";
+import Login from "../components/pages/Login";
+import Register from "../components/pages/Register";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <h2 className="font-bold text-red-600">Hi project</h2>,
+    element: <MainLayout></MainLayout>,
+    children: [
+      {
+        path: "/",
+        element: <Home></Home>,
+      },
+      {
+        path: "/login",
+        element: <Login></Login>,
+      },
+      {
+        path: "/register",
+        element: <Register></Register>,
+      },
+      {
+        path: "/all-volunteers",
+        element: <AllVolunteers></AllVolunteers>,
+      },
+      {
+        path: "/add-volunteer",
+        element: <AddVolunteer></AddVolunteer>,
+      },
+      {
+        path: "/manage-posts",
+        element: <ManagePost></ManagePost>,
+      },
+    ],
   },
 ]);
 
