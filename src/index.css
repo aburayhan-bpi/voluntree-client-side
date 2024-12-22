@@ -3,6 +3,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import 'flowbite';
 
 body {
   font-family: "Poppins", sans-serif;
@@ -11,3 +12,4 @@ body {
 a.active {
   color: blueviolet;
 }
+

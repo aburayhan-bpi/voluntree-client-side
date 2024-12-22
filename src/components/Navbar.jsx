@@ -2,9 +2,11 @@ import React, { useContext, useState, useEffect, useRef } from "react";
 import { Link, NavLink } from "react-router-dom";
 import logo1 from "../../public/logo-1.jpg";
 import { AuthContext } from "./providers/AuthProvider";
+import useAuth from "../hooks/useAuth";
 
 const Navbar = () => {
-  const { user } = useContext(AuthContext);
+  // const { user } = useContext(AuthContext);
+  const { user } = useAuth();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
