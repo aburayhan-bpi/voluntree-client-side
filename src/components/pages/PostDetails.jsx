@@ -1,12 +1,47 @@
-import React from "react";
+import React, { useState } from "react";
 import { FaCalendarAlt, FaMapMarkerAlt, FaUserAlt } from "react-icons/fa";
 import { useLoaderData } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
+import { TbCategory } from "react-icons/tb";
 
 const PostDetails = () => {
+  const { user } = useAuth();
   const campaign = useLoaderData();
-  console.log(campaign);
+
+  //   states
+  const [suggestion, setSuggestion] = useState("");
+  const [status, setStatus] = useState("requested");
+
+  const handleModal = () => {
+    console.log("modal clicked");
+    document.getElementById("my_modal_3").showModal();
+  };
+
+  const handleSubmitRequest = (e) => {
+    e.preventDefault();
+    console.log("request submitted");
+    const volunteerRequest = {
+      thumbnail: campaign.thumbnail,
+      title: campaign.title,
+      description: campaign.description,
+      category: campaign.category,
+      location: campaign.location,
+      volunteersNeeded: campaign.volunteersNeeded,
+      deadline: campaign.deadline,
+      organizerName: campaign.organizerName,
+      organizerEmail: campaign.organizerEmail,
+      postId: campaign._id,
+      suggestion,
+      status,
+      volunteerName: user?.displayName,
+      volunteerEmail: user?.email,
+    };
+    console.log(volunteerRequest);
+    document.getElementById("my_modal_3").close();
+  };
+
   return (
-    <div className="max-w-4xl mx-auto bg-gradient-to-br from-blue-50 via-white to-blue-100 rounded-xl shadow-xl overflow-hidden hover:shadow-2xl transition-shadow duration-300">
+    <div className=" mx-auto bg-gradient-to-br from-blue-50 via-white to-blue-100 rounded-xl shadow-xl overflow-hidden hover:shadow-2xl transition-shadow duration-300">
       <div className="grid grid-cols-1 lg:grid-cols-2">
         {/* Image Section */}
         <div className="relative">
@@ -72,11 +107,146 @@ const PostDetails = () => {
           </div>
 
           {/* Volunteer Button */}
-          <button className="mt-6 w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white py-3 text-lg font-semibold rounded-lg hover:from-blue-600 hover:to-purple-700 shadow-lg transition duration-300">
+          <button
+            onClick={handleModal}
+            className="mt-6 w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white py-3 text-lg font-semibold rounded-lg hover:from-blue-600 hover:to-purple-700 shadow-lg transition duration-300"
+          >
             Be a Volunteer
           </button>
         </div>
       </div>
+      {/* modal start */}
+      {/* You can open the modal using document.getElementById('ID').showModal() method */}
+
+      <dialog id="my_modal_3" className="modal">
+        <div className="modal-box border border-gray-200 shadow-lg max-w-5xl">
+          <form method="dialog">
+            <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+              ✕
+            </button>
+          </form>
+
+          {/* Thumbnail Card */}
+          <div className="p-4 bg-gradient-to-r from-blue-100 to-white rounded-lg shadow-md mb-6 flex flex-wrap lg:flex-nowrap items-center gap-4">
+            <img
+              src={campaign?.thumbnail}
+              alt={campaign?.title}
+              className="w-full lg:w-32 h-72 lg:h-32 rounded-lg object-cover shadow-lg"
+            />
+            <div className="flex-grow">
+              <h3 className="text-xl font-semibold text-blue-800">
+                {campaign?.title}
+              </h3>
+              <p className="text-sm text-gray-600">{campaign?.description}</p>
+              <div className="mt-3 flex flex-wrap gap-4">
+                <div className="flex items-center space-x-2">
+                  <TbCategory className="text-blue-600" />
+                  <span className="text-sm text-gray-800 capitalize">
+                    {campaign?.category}
+                  </span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <FaMapMarkerAlt className="text-blue-600" />
+                  <span className="text-sm text-gray-800">
+                    {campaign?.location}
+                  </span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <FaCalendarAlt className="text-blue-600" />
+                  <span className="text-sm text-gray-800">
+                    Deadline: {campaign?.deadline}
+                  </span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <FaCalendarAlt className="text-blue-600" />
+                  <span className="text-sm text-gray-800">
+                    Volunteers Need: {campaign?.volunteersNeeded}
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Form Section */}
+          <form onSubmit={handleSubmitRequest} className="space-y-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {/* Volunteer Info */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Volunteer Name
+                </label>
+                <input
+                  type="text"
+                  value={user?.displayName || ""}
+                  readOnly
+                  disabled
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg bg-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Volunteer Email
+                </label>
+                <input
+                  type="email"
+                  value={user?.email || ""}
+                  readOnly
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg bg-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                />
+              </div>
+              {/* Organizer Info */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Organizer Name
+                </label>
+                <input
+                  type="text"
+                  value={campaign?.organizerName || ""}
+                  readOnly
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg bg-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Organizer Email
+                </label>
+                <input
+                  type="email"
+                  value={campaign?.organizerEmail || ""}
+                  readOnly
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg bg-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                />
+              </div>
+            </div>
+
+            {/* Suggestion Box */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Suggestion
+              </label>
+              <textarea
+                value={suggestion}
+                onChange={(e) => setSuggestion(e.target.value)}
+                rows="4"
+                placeholder="Enter your suggestion here..."
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg bg-white focus:ring-2 focus:ring-green-500 focus:border-green-500"
+              />
+            </div>
+
+            {/* Submit Button */}
+            <div className="mt-6 text-right">
+              <button
+                type="submit"
+                className="px-6 py-3 bg-gradient-to-r from-green-500 to-blue-600 text-white font-semibold rounded-lg hover:from-green-600 hover:to-blue-700 transition shadow-md"
+              >
+                Submit Request
+              </button>
+            </div>
+          </form>
+        </div>
+      </dialog>
+
+      {/* modal end */}
     </div>
   );
 };
