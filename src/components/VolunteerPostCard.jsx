@@ -21,8 +21,10 @@ const VolunteerPostCard = ({ singlePost }) => {
       <div className="p-6 flex flex-col flex-grow">
         <h3 className="text-xl font-semibold text-gray-800 mb-2">{title}</h3>
         <div className="flex justify-between mb-4">
-          <span className="text-gray-600 text-sm">{category}</span>
-          <span className="text-gray-600 text-sm">
+          <span className="bg-red-200 text-red-600 rounded-lg p-1 text-sm capitalize">
+            {category}
+          </span>
+          <span className="bg-green-200 text-green-600 rounded-lg p-1 text-sm">
             {volunteersNeeded} Volunteers
           </span>
         </div>
@@ -34,16 +36,15 @@ const VolunteerPostCard = ({ singlePost }) => {
           </div>
           <div>
             <span className="block text-sm font-medium">Deadline:</span>
-            <span className="text-sm">{deadline}</span>
+            <span className="text-sm bg-red-200 text-red-600 rounded-lg p-[2px]">
+              {deadline}
+            </span>
           </div>
         </div>
       </div>
       <div className="p-4 border-t border-gray-200 mt-auto">
         <Link to={`/post-details/${_id}`}>
-          <button
-            onClick={() => alert("Redirecting to details page...")}
-            className="w-full py-2 mt-4 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors duration-300"
-          >
+          <button className="w-full py-2 mt-4 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors duration-300">
             View Details
           </button>
         </Link>

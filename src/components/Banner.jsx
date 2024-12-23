@@ -38,7 +38,8 @@ const Banner = () => {
         <SwiperSlide>
           <img
             className="w-full h-full object-fit"
-            src="https://i.ibb.co/wCG5nyc/Stardew-Valley.jpg"
+            src="
+            "
             alt=""
           />
         </SwiperSlide>

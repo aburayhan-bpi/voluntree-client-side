@@ -6,7 +6,9 @@ import AddVolunteer from "../components/pages/AddVolunteer";
 import ManagePost from "../components/pages/ManagePost";
 import Login from "../components/pages/Login";
 import Register from "../components/pages/Register";
-import { fetchPostsData } from "../utils/dataLoader";
+import { fetchPostsData } from "../utils/fetchPostsData";
+import PostDetails from "../components/pages/PostDetails";
+import { fetchSinglePostData } from "../utils/fetchSinglePostData";
 
 const router = createBrowserRouter([
   {
@@ -29,6 +31,11 @@ const router = createBrowserRouter([
         path: "/all-volunteers",
         element: <AllVolunteers></AllVolunteers>,
         loader: fetchPostsData,
+      },
+      {
+        path: "/post-details/:id",
+        element: <PostDetails></PostDetails>,
+        loader: fetchSinglePostData,
       },
       {
         path: "/add-volunteer",
