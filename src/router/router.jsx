@@ -9,11 +9,15 @@ import Register from "../components/pages/Register";
 import { fetchPostsData } from "../utils/fetchPostsData";
 import PostDetails from "../components/pages/PostDetails";
 import { fetchSinglePostData } from "../utils/fetchSinglePostData";
+import MyRequestPosts from "../components/pages/MyRequestPosts";
+import MyVolunteerPosts from "../components/pages/MyVolunteerPosts";
+import ErrorPage from "../components/pages/ErrorPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout></MainLayout>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         path: "/",
@@ -44,6 +48,16 @@ const router = createBrowserRouter([
       {
         path: "/manage-posts",
         element: <ManagePost></ManagePost>,
+        children: [
+          {
+            path: "/manage-posts",
+            element: <MyVolunteerPosts></MyVolunteerPosts>,
+          },
+          {
+            path: "/manage-posts/my-request-post",
+            element: <MyRequestPosts></MyRequestPosts>,
+          },
+        ],
       },
     ],
   },

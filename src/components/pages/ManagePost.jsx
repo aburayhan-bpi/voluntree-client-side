@@ -1,9 +1,37 @@
-import React from "react";
+import { NavLink, Outlet } from "react-router-dom";
+import { useState } from "react";
 
 const ManagePost = () => {
   return (
-    <div>
-      <h2>Manage my posts</h2>
+    <div className="md:flex h-screen">
+      {/* Sidebar */}
+      <div className="md:w-64 bg-gray-800 text-white p-4 shadow-md">
+        <h2 className="text-2xl font-bold mb-6">Manage Posts</h2>
+        <ul className="menu space-y-2">
+          <li>
+            <NavLink
+              to="/manage-posts"
+              end
+              className={({ isActive }) => (isActive ? "active" : "")}
+            >
+              My Volunteer Need Posts
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/manage-posts/my-request-post"
+              className={({ isActive }) => (isActive ? "active" : "")}
+            >
+              My Volunteer Request Posts
+            </NavLink>
+          </li>
+        </ul>
+      </div>
+
+      {/* Main Content */}
+      <div className="flex-1 p-6 bg-gray-100">
+        <Outlet /> {/* This will render child routes */}
+      </div>
     </div>
   );
 };

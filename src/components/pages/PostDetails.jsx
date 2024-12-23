@@ -1,14 +1,19 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaCalendarAlt, FaMapMarkerAlt, FaUserAlt } from "react-icons/fa";
 import { useLoaderData } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import { TbCategory } from "react-icons/tb";
+import axios from "axios";
+import Swal from "sweetalert2";
 
 const PostDetails = () => {
   const { user } = useAuth();
   const campaign = useLoaderData();
 
   //   states
+  const [volunteersNeeded, setVolunteersNeeded] = useState(
+    campaign.volunteersNeeded
+  );
   const [suggestion, setSuggestion] = useState("");
   const [status, setStatus] = useState("requested");
 
@@ -20,13 +25,13 @@ const PostDetails = () => {
   const handleSubmitRequest = (e) => {
     e.preventDefault();
     console.log("request submitted");
-    const volunteerRequest = {
+    const volunteerRequestData = {
       thumbnail: campaign.thumbnail,
       title: campaign.title,
       description: campaign.description,
       category: campaign.category,
       location: campaign.location,
-      volunteersNeeded: campaign.volunteersNeeded,
+      volunteersNeeded: parseFloat(campaign.volunteersNeeded),
       deadline: campaign.deadline,
       organizerName: campaign.organizerName,
       organizerEmail: campaign.organizerEmail,
@@ -36,9 +41,32 @@ const PostDetails = () => {
       volunteerName: user?.displayName,
       volunteerEmail: user?.email,
     };
-    console.log(volunteerRequest);
+
+    // send data to db
+    axios
+      .post("http://localhost:5000/volunteerRequests", volunteerRequestData)
+      .then((res) => {
+        console.log(res.data);
+        if (res.data.acknowledged) {
+          Swal.fire({
+            title: "Volunteer Requested!",
+            icon: "success",
+          });
+          // Update volunteersNeeded with the new value returned from the backend
+          console.log(res.data.updatedVolunteersNeeded);
+          setVolunteersNeeded(res.data.updatedVolunteersNeeded);
+
+          setSuggestion("");
+        }
+      });
+    console.log(volunteersNeeded);
+    // console.log(volunteerRequestData);
     document.getElementById("my_modal_3").close();
   };
+
+  useEffect(() => {
+    console.log("Updated volunteersNeeded:", volunteersNeeded);
+  }, [volunteersNeeded]);
 
   return (
     <div className=" mx-auto bg-gradient-to-br from-blue-50 via-white to-blue-100 rounded-xl shadow-xl overflow-hidden hover:shadow-2xl transition-shadow duration-300">
@@ -99,7 +127,7 @@ const PostDetails = () => {
                     Volunteers Needed
                   </p>
                   <p className="text-gray-800 text-base font-bold">
-                    {campaign.volunteersNeeded}
+                    {volunteersNeeded}
                   </p>
                 </div>
               </div>
@@ -160,7 +188,7 @@ const PostDetails = () => {
                 <div className="flex items-center space-x-2">
                   <FaCalendarAlt className="text-blue-600" />
                   <span className="text-sm text-gray-800">
-                    Volunteers Need: {campaign?.volunteersNeeded}
+                    Volunteers Need: {volunteersNeeded}
                   </span>
                 </div>
               </div>
@@ -230,6 +258,7 @@ const PostDetails = () => {
                 rows="4"
                 placeholder="Enter your suggestion here..."
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg bg-white focus:ring-2 focus:ring-green-500 focus:border-green-500"
+                required
               />
             </div>
 
