@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const ErrorPage = () => {
+  document.title = 'Error Page | Voluntree';
   return (
     <div>
       <div className="text-center">

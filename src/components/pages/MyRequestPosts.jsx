@@ -4,6 +4,7 @@ import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
 
 const MyRequestPosts = () => {
+  document.title = "Request Posts | Voluntree";
   const { user } = useAuth();
   const [myReqPost, setMyReqPost] = useState([]);
 
@@ -45,13 +46,15 @@ const MyRequestPosts = () => {
 
   return (
     <div>
-      <div>
+      <div className="flex gap-3 items-center">
         <h2 className="text-xl font-semibold">Requested Posts</h2>
+        <p className="text-center w-10 font-semibold bg-purple-200 text-purple-600 rounded-md">
+          {myReqPost.length}
+        </p>
       </div>
       <div className="mt-4">
         <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
           {myReqPost.length === 0 ? (
-            // Move this div outside of the table
             <div>
               <p className="rounded-lg text-red-500 font-semibold text-sm p-2">
                 No data available
@@ -66,6 +69,9 @@ const MyRequestPosts = () => {
                   </th>
                   <th scope="col" className="px-6 py-3">
                     Title
+                  </th>
+                  <th scope="col" className="px-6 py-3">
+                    Volunteer Email
                   </th>
                   <th scope="col" className="px-6 py-3">
                     Category
@@ -95,6 +101,7 @@ const MyRequestPosts = () => {
                       />
                     </th>
                     <td className="px-6 py-4">{singlePost?.title}</td>
+                    <td className="px-6 py-4">{singlePost?.volunteerEmail}</td>
                     <td className="px-6 py-4 capitalize">
                       {singlePost?.category}
                     </td>

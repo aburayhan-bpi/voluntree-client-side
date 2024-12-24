@@ -12,6 +12,8 @@ import { fetchSinglePostData } from "../utils/fetchSinglePostData";
 import MyRequestPosts from "../components/pages/MyRequestPosts";
 import MyVolunteerPosts from "../components/pages/MyVolunteerPosts";
 import ErrorPage from "../components/pages/ErrorPage";
+import UpdatePostPage from "../components/pages/UpdatePostPage";
+import { singlePostToUpdate } from "../utils/fetchSinglePostToUpdate";
 
 const router = createBrowserRouter([
   {
@@ -22,6 +24,7 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
+        loader: fetchPostsData,
       },
       {
         path: "/login",
@@ -58,6 +61,11 @@ const router = createBrowserRouter([
             element: <MyRequestPosts></MyRequestPosts>,
           },
         ],
+      },
+      {
+        path: "/posts/update/:id",
+        element: <UpdatePostPage></UpdatePostPage>,
+        loader: singlePostToUpdate,
       },
     ],
   },

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useSyncExternalStore } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 // Import Swiper styles
@@ -8,8 +8,11 @@ import "swiper/css/autoplay";
 
 // import required modules
 import { Navigation, Autoplay } from "swiper/modules";
+import BannerCard from "./BannerCard";
 
-const Banner = () => {
+const Banner = ({ bannerPosts }) => {
+  const { user, themeToggle } = useState();
+  console.log(bannerPosts);
   return (
     <div>
       <Swiper
@@ -21,35 +24,16 @@ const Banner = () => {
         }}
         modules={[Navigation, Autoplay]}
       >
-        <SwiperSlide>
-          <img
-            className="w-full h-full object-fit"
-            src="https://i.ibb.co/wCG5nyc/Stardew-Valley.jpg"
-            alt=""
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img
-            className="w-full h-full object-fit"
-            src="https://i.ibb.co/NSkmvKk/Satisfactory.jpg"
-            alt=""
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img
-            className="w-full h-full object-fit"
-            src="
-            "
-            alt=""
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img
-            className="w-full h-full object-fit"
-            src="https://i.ibb.co/MSK1v4t/Elden-Ring.jpg"
-            alt=""
-          />
-        </SwiperSlide>
+        <div>
+          {bannerPosts.map((singlePost) => (
+            <SwiperSlide>
+              <BannerCard
+                key={singlePost._id}
+                singlePost={singlePost}
+              ></BannerCard>
+            </SwiperSlide>
+          ))}
+        </div>
       </Swiper>
     </div>
   );

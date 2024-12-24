@@ -4,6 +4,7 @@ import Navbar from "../Navbar";
 import Footer from "../Footer";
 
 const MainLayout = () => {
+  
   return (
     // className="bg-cover bg-center bg-[url('https://i.ibb.co/xM5qkdy/mainBg.png')]"
     <div>

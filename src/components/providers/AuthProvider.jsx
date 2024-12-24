@@ -3,8 +3,8 @@ import React, { Children, createContext, useState } from "react";
 export const AuthContext = createContext();
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState({
-    email: "srshihab2233@gmail.com",
-    displayName: "Shihab",
+    email: "aburayhan.bpi@gmail.com",
+    displayName: "Md Abu Rayhan",
   });
   const [loading, setLoading] = useState(true);
   const [themeToggle, setThemeToggle] = useState(false);

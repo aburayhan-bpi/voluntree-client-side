@@ -3,6 +3,7 @@ import { useLoaderData } from "react-router-dom";
 import VolunteerPostCard from "../VolunteerPostCard";
 
 const AllVolunteers = () => {
+  document.title = "All Volunteers Posts | Voluntree";
   const loadedPosts = useLoaderData();
   const [posts, setPosts] = useState(loadedPosts);
   // console.log(posts);

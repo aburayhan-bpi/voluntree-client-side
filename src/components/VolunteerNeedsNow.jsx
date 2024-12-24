@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import VolunteerCard from "./VolunteerCard";
 import { FaArrowRight } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 const VolunteerNeedsNow = () => {
   const posts = [
@@ -43,7 +44,15 @@ const VolunteerNeedsNow = () => {
     },
     // Add more posts...
   ];
+  const [needData, setNeedData] = useState([]);
 
+  useEffect(() => {
+    axios.get(`http://localhost:5000/posts?volnNeed=true`).then((res) => {
+      console.log(res.data);
+      setNeedData(res.data);
+    });
+  }, []);
+  console.log(needData);
   return (
     <div className="">
       <h2 className="text-center font-bold mt-10 mb-4 text-4xl">

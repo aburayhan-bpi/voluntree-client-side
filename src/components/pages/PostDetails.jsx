@@ -7,6 +7,7 @@ import axios from "axios";
 import Swal from "sweetalert2";
 
 const PostDetails = () => {
+  document.title = "Post Details | Voluntree";
   const { user } = useAuth();
   const campaign = useLoaderData();
 
@@ -76,7 +77,7 @@ const PostDetails = () => {
           <img
             src={campaign.thumbnail}
             alt={campaign.title}
-            className="w-full h-full object-cover"
+            className="w-full h-[33rem] object-"
           />
           <span className="absolute top-4 left-4 bg-gradient-to-r from-blue-500 to-purple-500 text-white text-sm px-3 py-1 rounded-full uppercase shadow-lg">
             {campaign.category}

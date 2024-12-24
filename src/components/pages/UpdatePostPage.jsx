@@ -1,15 +1,18 @@
-import React, { useContext, useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useLoaderData, useNavigate } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
 import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
-import { AuthContext } from "../providers/AuthProvider";
-import Swal from "sweetalert2";
 import toast from "react-hot-toast";
 import axios from "axios";
+import Swal from "sweetalert2";
 
-const AddVolunteer = () => {
-  document.title = "Add Volunteer | Voluntree";
-  const [deadline, setDeadline] = useState(new Date());
-  const { user } = useContext(AuthContext);
+const UpdatePostPage = () => {
+  document.title = "Update Post | Voluntree";
+  const navigate = useNavigate();
+  const { user } = useAuth();
+  const loadedData = useLoaderData();
+  const [myData, setMyData] = useState(loadedData);
+  const [deadline, setDeadline] = useState(new Date()); // Default to current date
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -17,6 +20,8 @@ const AddVolunteer = () => {
     const formElement = e.target;
     const formData = new FormData();
     const imageFile = formElement.thumbnail.files[0];
+
+    let imageUrl = myData?.thumbnail; // Default to the current thumbnail from myData
 
     if (imageFile) {
       try {
@@ -30,52 +35,54 @@ const AddVolunteer = () => {
 
         const uploadResult = await uploadResponse.json();
         if (uploadResult.success) {
-          const imageUrl = uploadResult.data.display_url;
-
-          // Format deadline using toLocaleDateString
-          const formattedDeadline = deadline.toLocaleDateString("en-CA"); // Outputs: YYYY-MM-DD
-
-          const postData = {
-            title: formElement.title.value,
-            category: formElement.category.value,
-            location: formElement.location.value,
-            volunteersNeeded: parseInt(formElement.volunteersNeeded.value),
-            deadline: formattedDeadline, // Formatted deadline
-            description: formElement.description.value,
-            thumbnail: imageUrl,
-            organizerName: user?.displayName,
-            organizerEmail: user?.email,
-          };
-
-          console.log("Post Data:", postData);
-
-          axios.post("http://localhost:5000/posts", postData).then((res) => {
-            console.log(res.data);
-            if (res.data.acknowledged) {
-              Swal.fire({
-                title: "Post added successfully!",
-                icon: "success",
-              });
-              formElement.reset();
-            }
-          });
+          imageUrl = uploadResult.data.display_url; // Update imageUrl if upload is successful
         } else {
           console.error("Upload failed:", uploadResult.error.message);
           toast.error("Failed to upload image. Please try again.");
+          return; // Stop form submission if image upload fails
         }
       } catch (error) {
         console.error("Image upload error:", error);
         toast.error("An error occurred while uploading the image.");
+        return; // Stop form submission if image upload throws an error
       }
-    } else {
-      toast.error("Please upload a valid thumbnail image.");
     }
-  };
 
+    const formattedDeadline = deadline.toLocaleDateString("en-CA");
+
+    const postData = {
+      title: formElement.title.value,
+      category: formElement.category.value,
+      location: formElement.location.value,
+      volunteersNeeded: parseInt(formElement.volunteersNeeded.value),
+      deadline: formattedDeadline,
+      description: formElement.description.value,
+      thumbnail: imageUrl, // Using the imageUrl, either uploaded or from myData
+      organizerName: user?.displayName,
+      organizerEmail: user?.email,
+      postId: myData?._id,
+    };
+
+    console.log("Post Data:", postData);
+    axios
+      .patch(`http://localhost:5000/posts/${myData?._id}`, postData)
+      .then((res) => {
+        console.log(res.data);
+        if (res.data.acknowledged) {
+          Swal.fire({
+            title: "Post updated successfully!",
+            icon: "success",
+          });
+          formElement.reset();
+          navigate("/manage-posts");
+        }
+      });
+  };
+  //   console.log(myData?.category);
   return (
     <div className="max-w-4xl mx-auto bg-blue-100 p-8 shadow-md rounded-lg">
       <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">
-        Add Volunteer Need Post
+        Update Volunteer Need Post
       </h2>
       <form onSubmit={handleSubmit} className="space-y-6">
         {/* Thumbnail */}
@@ -99,6 +106,7 @@ const AddVolunteer = () => {
           <input
             type="text"
             name="title"
+            defaultValue={myData?.title}
             className="block w-full border border-gray-300 rounded-lg p-2 focus:ring-blue-500 focus:border-blue-500"
             placeholder="Enter post title"
             required
@@ -112,11 +120,14 @@ const AddVolunteer = () => {
           </label>
           <select
             name="category"
-           
+            // value={myData?.category || ""} // Set the category from myData as default
+            value={myData?.category}
+            onChange={(e) => setMyData({ ...myData, category: e.target.value })}
             className="block w-full border border-gray-300 rounded-lg p-2 focus:ring-blue-500 focus:border-blue-500"
             required
           >
-            <option value="healthcare" >Healthcare</option>
+            <option value="">Select Category</option>
+            <option value="healthcare">Healthcare</option>
             <option value="education">Education</option>
             <option value="social-service">Social Service</option>
             <option value="animal-welfare">Animal Welfare</option>
@@ -132,6 +143,7 @@ const AddVolunteer = () => {
             <input
               type="text"
               name="location"
+              defaultValue={myData?.location}
               className="block w-full border border-gray-300 rounded-lg p-2 focus:ring-blue-500 focus:border-blue-500"
               placeholder="Enter location"
               required
@@ -147,6 +159,7 @@ const AddVolunteer = () => {
               type="number"
               name="volunteersNeeded"
               min="1"
+              defaultValue={myData?.volunteersNeeded}
               className="block w-full border border-gray-300 rounded-lg p-2 focus:ring-blue-500 focus:border-blue-500"
               placeholder="Enter the number of volunteers needed"
               required
@@ -159,8 +172,8 @@ const AddVolunteer = () => {
               Deadline
             </label>
             <DatePicker
-              selected={deadline}
-              onChange={(date) => setDeadline(date)}
+              selected={deadline} // Controlled value
+              onChange={(date) => setDeadline(date)} // Update state
               name="deadline"
               className="block w-full border border-gray-300 rounded-lg p-2 focus:ring-blue-500 focus:border-blue-500"
               required
@@ -175,6 +188,7 @@ const AddVolunteer = () => {
           </label>
           <textarea
             name="description"
+            defaultValue={myData?.description}
             className="block w-full border border-gray-300 rounded-lg p-2 focus:ring-blue-500 focus:border-blue-500"
             rows="4"
             placeholder="Enter description"
@@ -214,7 +228,7 @@ const AddVolunteer = () => {
             type="submit"
             className="w-full px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
           >
-            Add Post
+            Update Post
           </button>
         </div>
       </form>
@@ -222,4 +236,4 @@ const AddVolunteer = () => {
   );
 };
 
-export default AddVolunteer;
+export default UpdatePostPage;
