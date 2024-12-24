@@ -47,10 +47,10 @@ const AddVolunteer = () => {
             organizerEmail: user?.email,
           };
 
-          console.log("Post Data:", postData);
+          // console.log("Post Data:", postData);
 
           axios.post("http://localhost:5000/posts", postData).then((res) => {
-            console.log(res.data);
+            // console.log(res.data);
             if (res.data.acknowledged) {
               Swal.fire({
                 title: "Post added successfully!",
@@ -60,11 +60,11 @@ const AddVolunteer = () => {
             }
           });
         } else {
-          console.error("Upload failed:", uploadResult.error.message);
+          // console.error("Upload failed:", uploadResult.error.message);
           toast.error("Failed to upload image. Please try again.");
         }
       } catch (error) {
-        console.error("Image upload error:", error);
+        // console.error("Image upload error:", error);
         toast.error("An error occurred while uploading the image.");
       }
     } else {
@@ -73,7 +73,7 @@ const AddVolunteer = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto bg-blue-100 p-8 shadow-md rounded-lg">
+    <div className="max-w-4xl mx-auto bg-blue-100 dark:bg-gray-950 p-8 shadow-md rounded-lg">
       <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">
         Add Volunteer Need Post
       </h2>

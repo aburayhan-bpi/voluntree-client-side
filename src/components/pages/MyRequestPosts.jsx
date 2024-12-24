@@ -29,7 +29,7 @@ const MyRequestPosts = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axios.delete(`http://localhost:5000/reqPosts/${id}`).then((res) => {
-          console.log(res.data);
+          // console.log(res.data);
           Swal.fire({
             title: "Deleted!",
             text: "Request has been deleted.",
@@ -41,7 +41,7 @@ const MyRequestPosts = () => {
       }
     });
 
-    console.log(id);
+    // console.log(id);
   };
 
   return (

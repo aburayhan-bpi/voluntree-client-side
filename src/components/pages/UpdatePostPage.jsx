@@ -63,11 +63,11 @@ const UpdatePostPage = () => {
       postId: myData?._id,
     };
 
-    console.log("Post Data:", postData);
+    // console.log("Post Data:", postData);
     axios
       .patch(`http://localhost:5000/posts/${myData?._id}`, postData)
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         if (res.data.acknowledged) {
           Swal.fire({
             title: "Post updated successfully!",

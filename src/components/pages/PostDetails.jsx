@@ -20,7 +20,7 @@ const PostDetails = () => {
   const [status, setStatus] = useState("requested");
 
   const handleModal = () => {
-    console.log("modal clicked");
+    // console.log("modal clicked");
     if (volunteersNeeded === 0) {
       return toast.error("Volunteers fullfilled!");
     }
@@ -29,7 +29,7 @@ const PostDetails = () => {
 
   const handleSubmitRequest = (e) => {
     e.preventDefault();
-    console.log("request submitted");
+    // console.log("request submitted");
     const volunteerRequestData = {
       thumbnail: campaign.thumbnail,
       title: campaign.title,
@@ -51,26 +51,26 @@ const PostDetails = () => {
     axios
       .post("http://localhost:5000/volunteerRequests", volunteerRequestData)
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         if (res.data.acknowledged) {
           Swal.fire({
             title: "Volunteer Requested!",
             icon: "success",
           });
           // Update volunteersNeeded with the new value returned from the backend
-          console.log(res.data.updatedVolunteersNeeded);
+          // console.log(res.data.updatedVolunteersNeeded);
           setVolunteersNeeded(res.data.updatedVolunteersNeeded);
 
           setSuggestion("");
         }
       });
-    console.log(volunteersNeeded);
+    // console.log(volunteersNeeded);
     // console.log(volunteerRequestData);
     document.getElementById("my_modal_3").close();
   };
 
   useEffect(() => {
-    console.log("Updated volunteersNeeded:", volunteersNeeded);
+    // console.log("Updated volunteersNeeded:", volunteersNeeded);
   }, [volunteersNeeded]);
 
   return (

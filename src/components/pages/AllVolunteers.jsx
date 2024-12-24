@@ -16,7 +16,7 @@ const AllVolunteers = () => {
       .then((res) => res.json())
       .then((data) => {
         setFilteredPosts(data);
-        console.log(data);
+        // console.log(data);
       });
   }, [searchQuery]);
 

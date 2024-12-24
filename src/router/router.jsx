@@ -42,30 +42,54 @@ const router = createBrowserRouter([
       },
       {
         path: "/post-details/:id",
-        element: <PostDetails></PostDetails>,
+        element: (
+          <PrivateRoute>
+            <PostDetails></PostDetails>
+          </PrivateRoute>
+        ),
         loader: fetchSinglePostData,
       },
       {
         path: "/add-volunteer",
-        element: <AddVolunteer></AddVolunteer>,
+        element: (
+          <PrivateRoute>
+            <AddVolunteer></AddVolunteer>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/manage-posts",
-        element: <ManagePost></ManagePost>,
+        element: (
+          <PrivateRoute>
+            <ManagePost></ManagePost>
+          </PrivateRoute>
+        ),
         children: [
           {
             path: "/manage-posts",
-            element: <MyVolunteerPosts></MyVolunteerPosts>,
+            element: (
+              <PrivateRoute>
+                <MyVolunteerPosts></MyVolunteerPosts>
+              </PrivateRoute>
+            ),
           },
           {
             path: "/manage-posts/my-request-post",
-            element: <MyRequestPosts></MyRequestPosts>,
+            element: (
+              <PrivateRoute>
+                <MyRequestPosts></MyRequestPosts>
+              </PrivateRoute>
+            ),
           },
         ],
       },
       {
         path: "/posts/update/:id",
-        element: <UpdatePostPage></UpdatePostPage>,
+        element: (
+          <PrivateRoute>
+            <UpdatePostPage></UpdatePostPage>
+          </PrivateRoute>
+        ),
         loader: singlePostToUpdate,
       },
     ],

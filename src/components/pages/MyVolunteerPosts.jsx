@@ -34,7 +34,7 @@ const MyVolunteerPosts = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axios.delete(`http://localhost:5000/posts/${id}`).then((res) => {
-          console.log(res.data);
+          // console.log(res.data);
           Swal.fire({
             title: "Deleted!",
             text: "Request has been deleted.",

@@ -22,7 +22,7 @@ const Login = () => {
     const email = form.get("email");
     const password = form.get("password");
     const loginUserData = { email, password };
-    console.log(loginUserData);
+    // console.log(loginUserData);
     setErrorMsg("");
 
     if (email === "" || password === "") {
@@ -48,18 +48,18 @@ const Login = () => {
   const handleGoogleLogin = () => {
     googleLogin()
       .then((result) => {
-        console.log(result.user);
+        // console.log(result.user);
         // if (acknowledged) {
-          Swal.fire({
-            text: "Logged in successfully!",
-            icon: "success",
-          });
-          setErrorMsg("");
-          navigate(location.state ? location.state : "/");
+        Swal.fire({
+          text: "Logged in successfully!",
+          icon: "success",
+        });
+        setErrorMsg("");
+        navigate(location.state ? location.state : "/");
         // }
       })
       .catch((err) => {
-        console.log(err.message);
+        // console.log(err.message);
       });
   };
 

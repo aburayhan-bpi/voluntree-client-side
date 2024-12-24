@@ -31,13 +31,13 @@ const Register = () => {
       return;
     }
     const newUser = { name, email, photo, password };
-    console.log(newUser);
+    // console.log(newUser);
 
     // create new user
     createUser(email, password)
       .then(async (result) => {
         const user = result.user;
-        console.log(user);
+        // console.log(user);
 
         // Update user profile
         await updateUserProfile({
@@ -56,7 +56,7 @@ const Register = () => {
         navigate("/");
       })
       .catch((error) => {
-        console.log(error.message);
+        // console.log(error.message);
         toast.error("Something went wrong!");
       });
   };
