@@ -14,6 +14,7 @@ import MyVolunteerPosts from "../components/pages/MyVolunteerPosts";
 import ErrorPage from "../components/pages/ErrorPage";
 import UpdatePostPage from "../components/pages/UpdatePostPage";
 import { singlePostToUpdate } from "../utils/fetchSinglePostToUpdate";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 const router = createBrowserRouter([
   {

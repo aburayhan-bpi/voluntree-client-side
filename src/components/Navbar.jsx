@@ -1,15 +1,17 @@
 import React, { useContext, useState, useEffect, useRef } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import logo1 from "../../public/logo-1.jpg";
 import { AuthContext } from "./providers/AuthProvider";
 import useAuth from "../hooks/useAuth";
 
 const Navbar = () => {
   // const { user } = useContext(AuthContext);
-  const { user } = useAuth();
+  const { user, signOutUser } = useAuth();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
+
+  const navigate = useNavigate();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -37,6 +39,15 @@ const Navbar = () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
+
+  // sign out user
+  const handleSignOut = () => {
+    signOutUser().then(() => {
+      setIsMenuOpen(false);
+      setIsDropdownOpen(false);
+      navigate("/");
+    });
+  };
 
   const links = (
     <>
@@ -117,15 +128,18 @@ const Navbar = () => {
             {user?.email ? (
               <div>
                 <div ref={dropdownRef} className="relative">
-                  <img
-                    role="button"
-                    className="w-10 cursor-pointer"
-                    src={
-                      user?.photoURL || "https://i.ibb.co/vjsFkLj/219983.png"
-                    }
-                    alt="Profile"
-                    onClick={toggleDropdown}
-                  />
+                  {user?.photoURL ? (
+                    <img
+                      className="w-10 h-10 rounded-full cursor-pointer"
+                      src={user?.photoURL}
+                      alt="User"
+                      onClick={toggleDropdown}
+                    />
+                  ) : (
+                    <span className="w-11 h-10 bg-gray-300 rounded-full flex items-center justify-center">
+                      <Loader />
+                    </span>
+                  )}
                   {isDropdownOpen && (
                     <ul className="absolute right-0 border mt-1 w-52 p-2 bg-base-100 rounded-lg shadow z-[1]">
                       <li>
@@ -153,7 +167,10 @@ const Navbar = () => {
                         </Link>
                       </li>
                       <li>
-                        <button className="p-2 mt-2 w-full border rounded-md text-sm hover:bg-green-700 bg-success text-white">
+                        <button
+                          onClick={handleSignOut}
+                          className="p-2 mt-2 w-full border rounded-md text-sm hover:bg-green-700 bg-success text-white"
+                        >
                           Sign Out
                         </button>
                       </li>

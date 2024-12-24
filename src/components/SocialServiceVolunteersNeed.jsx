@@ -11,7 +11,7 @@ const SocialServiceVolunteersNeed = () => {
     axios
       .get(`http://localhost:5000/posts?socialService=social-service`)
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         setNeedData(res.data);
       });
   }, []);
