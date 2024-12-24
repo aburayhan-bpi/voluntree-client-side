@@ -48,32 +48,34 @@ const VolunteerNeedsNow = () => {
 
   useEffect(() => {
     axios.get(`http://localhost:5000/posts?volnNeed=true`).then((res) => {
-      console.log(res.data);
+      // console.log(res.data);
       setNeedData(res.data);
     });
   }, []);
-  console.log(needData);
+  // console.log(needData);
   return (
-    <div className="">
-      <h2 className="text-center font-bold mt-10 mb-4 text-4xl">
+    <div className="bg-amber-200 p-3 rounded-lg mt-10 mb-4">
+      <h2 className="text-center font-bold  text-4xl">
         Volunteer Needs Now
       </h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 bg-amber-200 p-4 rounded-md">
-        {posts.map((post, index) => (
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4  p-4 rounded-md">
+        {needData.map((singleData, index) => (
           <VolunteerCard
             key={index}
-            thumbnail={post.thumbnail}
-            title={post.title}
-            category={post.category}
-            deadline={post.deadline}
+            thumbnail={singleData?.thumbnail}
+            title={singleData?.title}
+            category={singleData?.category}
+            volunteersNeeded={singleData?.volunteersNeeded}
+            deadline={singleData?.deadline}
+            _id={singleData?._id}
           />
         ))}
-        <div>
-          <button className="p-2 border bg-blue-600 text-white rounded-lg flex items-center gap-2 group">
-            <Link to="/all-volunteers">See All</Link>
-            <FaArrowRight className="inline transition-transform transform group-hover:translate-x-1" />
-          </button>
-        </div>
+      </div>
+      <div>
+        <button className="p-2 border bg-blue-600 text-white rounded-lg flex items-center gap-2 group">
+          <Link to="/all-volunteers">See All</Link>
+          <FaArrowRight className="inline transition-transform transform group-hover:translate-x-1" />
+        </button>
       </div>
     </div>
   );

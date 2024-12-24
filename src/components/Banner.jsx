@@ -1,4 +1,4 @@
-import React, { useState, useSyncExternalStore } from "react";
+import React, { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 // Import Swiper styles
@@ -12,7 +12,7 @@ import BannerCard from "./BannerCard";
 
 const Banner = ({ bannerPosts }) => {
   const { user, themeToggle } = useState();
-  console.log(bannerPosts);
+  // console.log(bannerPosts);
   return (
     <div>
       <Swiper
@@ -26,11 +26,8 @@ const Banner = ({ bannerPosts }) => {
       >
         <div>
           {bannerPosts.map((singlePost) => (
-            <SwiperSlide>
-              <BannerCard
-                key={singlePost._id}
-                singlePost={singlePost}
-              ></BannerCard>
+            <SwiperSlide key={singlePost._id}>
+              <BannerCard singlePost={singlePost}></BannerCard>
             </SwiperSlide>
           ))}
         </div>

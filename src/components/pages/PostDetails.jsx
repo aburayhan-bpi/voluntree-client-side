@@ -5,6 +5,7 @@ import useAuth from "../../hooks/useAuth";
 import { TbCategory } from "react-icons/tb";
 import axios from "axios";
 import Swal from "sweetalert2";
+import toast from "react-hot-toast";
 
 const PostDetails = () => {
   document.title = "Post Details | Voluntree";
@@ -20,6 +21,9 @@ const PostDetails = () => {
 
   const handleModal = () => {
     console.log("modal clicked");
+    if (volunteersNeeded === 0) {
+      return toast.error("Volunteers fullfilled!");
+    }
     document.getElementById("my_modal_3").showModal();
   };
 
@@ -98,7 +102,9 @@ const PostDetails = () => {
                   <p className="font-semibold text-gray-600 text-sm">
                     Location
                   </p>
-                  <p className="text-gray-800 text-base">{campaign.location}</p>
+                  <p className="text-gray-800 text-base capitalize">
+                    {campaign.location}
+                  </p>
                 </div>
               </div>
               <div className="flex items-center space-x-2">
