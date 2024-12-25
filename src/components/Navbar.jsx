@@ -70,23 +70,25 @@ const Navbar = () => {
             All Volunteers Need Posts
           </NavLink>
         </li>
-        <li className="md:hidden mt-2 md:mt-0">
-          <div>
-            <button
-              onClick={() => setIsMenuOpen(false)}
-              className="p-2 border rounded-md text-sm hover:bg-green-700 bg-success text-white"
-            >
-              <Link to="/login">Login</Link>
-            </button>
+        {!user && (
+          <li className="md:hidden mt-2 md:mt-0">
+            <div>
+              <button
+                onClick={() => setIsMenuOpen(false)}
+                className="p-2 mr-2 border rounded-md text-sm hover:bg-green-700 bg-success text-white"
+              >
+                <Link to="/login">Login</Link>
+              </button>
 
-            <button
-              onClick={() => setIsMenuOpen(false)}
-              className="p-2 border rounded-md text-sm hover:bg-green-700 bg-success text-white"
-            >
-              <Link to="/register">Register</Link>
-            </button>
-          </div>
-        </li>
+              <button
+                onClick={() => setIsMenuOpen(false)}
+                className="p-2 border rounded-md text-sm hover:bg-green-700 bg-success text-white"
+              >
+                <Link to="/register">Register</Link>
+              </button>
+            </div>
+          </li>
+        )}
       </div>
     </>
   );
@@ -94,12 +96,12 @@ const Navbar = () => {
   return (
     <nav className="bg-white dark:bg-gray-900 fixed w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-        <NavLink
+        <Link
           to="/"
           className="flex items-center space-x-3 rtl:space-x-reverse"
         >
           <img className="rounded-lg w-32" src={logo1} alt="Logo" />
-        </NavLink>
+        </Link>
         <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
           {/* theme start */}
           <button className="dark:text-white mr-3" onClick={toggleTheme}>

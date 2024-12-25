@@ -10,7 +10,9 @@ const MyRequestPosts = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/myReqPosts?email=${user?.email}`)
+      .get(
+        `https://voluntree-server-side.vercel.app/myReqPosts?email=${user?.email}`
+      )
       .then((res) => {
         setMyReqPost(res.data);
       });
@@ -28,16 +30,18 @@ const MyRequestPosts = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        axios.delete(`http://localhost:5000/reqPosts/${id}`).then((res) => {
-          // console.log(res.data);
-          Swal.fire({
-            title: "Deleted!",
-            text: "Request has been deleted.",
-            icon: "success",
+        axios
+          .delete(`https://voluntree-server-side.vercel.app/reqPosts/${id}`)
+          .then((res) => {
+            // console.log(res.data);
+            Swal.fire({
+              title: "Deleted!",
+              text: "Request has been deleted.",
+              icon: "success",
+            });
+            const remaining = myReqPost.filter((prev) => prev._id !== id);
+            setMyReqPost(remaining);
           });
-          const remaining = myReqPost.filter((prev) => prev._id !== id);
-          setMyReqPost(remaining);
-        });
       }
     });
 
@@ -47,7 +51,9 @@ const MyRequestPosts = () => {
   return (
     <div>
       <div className="flex gap-3 items-center">
-        <h2 className="text-xl font-semibold dark:text-gray-200">Requested Posts</h2>
+        <h2 className="text-xl font-semibold dark:text-gray-200">
+          Requested Posts
+        </h2>
         <p className="text-center w-10 font-semibold bg-purple-200 text-purple-600 rounded-md">
           {myReqPost.length}
         </p>

@@ -11,7 +11,9 @@ const MyVolunteerPosts = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/posts?email=${user?.email}`)
+      .get(
+        `https://voluntree-server-side.vercel.app/posts?email=${user?.email}`
+      )
       .then((res) => {
         // console.log(res.data);
         setMyVoluntPost(res.data);
@@ -33,16 +35,18 @@ const MyVolunteerPosts = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        axios.delete(`http://localhost:5000/posts/${id}`).then((res) => {
-          // console.log(res.data);
-          Swal.fire({
-            title: "Deleted!",
-            text: "Request has been deleted.",
-            icon: "success",
+        axios
+          .delete(`https://voluntree-server-side.vercel.app/posts/${id}`)
+          .then((res) => {
+            // console.log(res.data);
+            Swal.fire({
+              title: "Deleted!",
+              text: "Request has been deleted.",
+              icon: "success",
+            });
+            const remaining = myVoluntPost.filter((prev) => prev._id !== id);
+            setMyVoluntPost(remaining);
           });
-          const remaining = myVoluntPost.filter((prev) => prev._id !== id);
-          setMyVoluntPost(remaining);
-        });
       }
     });
   };
@@ -50,7 +54,9 @@ const MyVolunteerPosts = () => {
   return (
     <div>
       <div className="flex gap-3 items-center">
-        <h2 className="text-xl font-semibold dark:text-gray-200">My Volunteers Need Posts</h2>
+        <h2 className="text-xl font-semibold dark:text-gray-200">
+          My Volunteers Need Posts
+        </h2>
         <p className="text-center w-10 font-semibold bg-purple-200 text-purple-600 rounded-md">
           {myVoluntPost.length}
         </p>

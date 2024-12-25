@@ -14,7 +14,9 @@ const AllVolunteers = () => {
   const [filteredPosts, setFilteredPosts] = useState(loadedPosts);
   // console.log(filteredPosts);
   useEffect(() => {
-    fetch(`http://localhost:5000/posts?search=${searchQuery}`)
+    fetch(
+      `https://voluntree-server-side.vercel.app/posts?search=${searchQuery}`
+    )
       .then((res) => res.json())
       .then((data) => {
         setFilteredPosts(data);
@@ -25,7 +27,9 @@ const AllVolunteers = () => {
   return (
     <div>
       <div className="space-y-3 mt-4 mb-10 dark:text-gray-200 flex flex-col justify-center items-center">
-        <h2 className="text-4xl font-bold">All volunteers collections</h2>
+        <h2 className="text-4xl font-bold text-center">
+          All volunteers collections
+        </h2>
         <p className="text-center max-w-3xl mx-auto font-light">
           Together, we can make a difference in countless lives. Explore a wide
           array of volunteer opportunities and become a part of the change the
@@ -39,7 +43,7 @@ const AllVolunteers = () => {
           placeholder="Search posts by title..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          className="p-2 border border-gray-300 rounded-md w-full dark:bg-gray-800"
+          className="p-2 border border-gray-300 rounded-md w-full dark:text-gray-200 dark:bg-gray-800"
         />
       </div>
       <div className="flex justify-between">
