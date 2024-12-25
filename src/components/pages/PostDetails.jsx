@@ -49,10 +49,7 @@ const PostDetails = () => {
 
     // send data to db
     axios
-      .post(
-        "https://voluntree-server-side.vercel.app/volunteerRequests",
-        volunteerRequestData
-      )
+      .post("http://localhost:5000/volunteerRequests", volunteerRequestData)
       .then((res) => {
         // console.log(res.data);
         if (res.data.acknowledged) {

@@ -65,10 +65,7 @@ const UpdatePostPage = () => {
 
     // console.log("Post Data:", postData);
     axios
-      .patch(
-        `https://voluntree-server-side.vercel.app/posts/${myData?._id}`,
-        postData
-      )
+      .patch(`http://localhost:5000/posts/${myData?._id}`, postData)
       .then((res) => {
         // console.log(res.data);
         if (res.data.acknowledged) {

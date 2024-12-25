@@ -14,9 +14,7 @@ const AllVolunteers = () => {
   const [filteredPosts, setFilteredPosts] = useState(loadedPosts);
   // console.log(filteredPosts);
   useEffect(() => {
-    fetch(
-      `https://voluntree-server-side.vercel.app/posts?search=${searchQuery}`
-    )
+    fetch(`http://localhost:5000/posts?search=${searchQuery}`)
       .then((res) => res.json())
       .then((data) => {
         setFilteredPosts(data);

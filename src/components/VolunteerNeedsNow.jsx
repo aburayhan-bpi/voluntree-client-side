@@ -47,12 +47,10 @@ const VolunteerNeedsNow = () => {
   const [needData, setNeedData] = useState([]);
 
   useEffect(() => {
-    axios
-      .get(`https://voluntree-server-side.vercel.app/posts?volnNeed=true`)
-      .then((res) => {
-        // console.log(res.data);
-        setNeedData(res.data);
-      });
+    axios.get(`http://localhost:5000/posts?volnNeed=true`).then((res) => {
+      // console.log(res.data);
+      setNeedData(res.data);
+    });
   }, []);
   // console.log(needData);
   return (

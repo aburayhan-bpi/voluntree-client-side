@@ -9,9 +9,7 @@ const SocialServiceVolunteersNeed = () => {
 
   useEffect(() => {
     axios
-      .get(
-        `https://voluntree-server-side.vercel.app/posts?socialService=social-service`
-      )
+      .get(`http://localhost:5000/posts?socialService=social-service`)
       .then((res) => {
         // console.log(res.data);
         setNeedData(res.data);

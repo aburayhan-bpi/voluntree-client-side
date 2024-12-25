@@ -64,15 +64,21 @@ const AuthProvider = ({ children }) => {
             withCredentials: true,
           })
           .then((res) => {
-            console.log(res.data);
+            console.log("user login:", res.data);
+            setLoading(false);
+          });
+      } else {
+        axios
+          .post("http://localhost:5000/logout", {}, { withCredentials: true })
+          .then((res) => {
+            console.log("user logged out: ", res.data);
+            setLoading(false);
           });
       }
 
-      setLoading(false);
-
       return () => unSubscribe();
     });
-  }, []);
+  }, [user?.email]);
 
   const allInfo = {
     user,

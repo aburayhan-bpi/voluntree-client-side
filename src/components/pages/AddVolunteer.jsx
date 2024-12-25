@@ -49,18 +49,16 @@ const AddVolunteer = () => {
 
           // console.log("Post Data:", postData);
 
-          axios
-            .post("https://voluntree-server-side.vercel.app/posts", postData)
-            .then((res) => {
-              // console.log(res.data);
-              if (res.data.acknowledged) {
-                Swal.fire({
-                  title: "Post added successfully!",
-                  icon: "success",
-                });
-                formElement.reset();
-              }
-            });
+          axios.post("http://localhost:5000/posts", postData, {withCredentials: true}).then((res) => {
+            // console.log(res.data);
+            if (res.data.acknowledged) {
+              Swal.fire({
+                title: "Post added successfully!",
+                icon: "success",
+              });
+              formElement.reset();
+            }
+          });
         } else {
           // console.error("Upload failed:", uploadResult.error.message);
           toast.error("Failed to upload image. Please try again.");
