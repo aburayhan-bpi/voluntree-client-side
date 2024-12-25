@@ -6,7 +6,7 @@ const Footer = () => {
     <footer className="mt-72 bg-green-300 dark:bg-gray-800 dark:text-gray-300 bottom-0">
       <div className="container flex flex-col p-4 mx-auto md:p-8 lg:flex-row dark:divide-gray-600">
         <ul className="self-center py-6 space-y-4 text-center sm:flex sm:space-y-0 sm:justify-around sm:space-x-4 lg:flex-1 lg:justify-start">
-          <li>Home</li>
+          <Link to='/'>Home</Link>
           <Link to="/register">SignUp</Link>
           <Link to="/login">SignIn</Link>
           <Link to="/all-volunteers">Search Volunteer Post</Link>
