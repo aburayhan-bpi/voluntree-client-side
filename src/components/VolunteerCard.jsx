@@ -12,15 +12,17 @@ const VolunteerCard = ({
   const formattedCategory = category.replace(/-/g, " ");
 
   return (
-    <div className="bg-white rounded-lg shadow-md p-4 flex flex-col justify-between h-full">
+    <div className="bg-white rounded-lg shadow-md p-4 flex flex-col justify-between h-full dark:bg-gray-800 dark:border dark:border-blue-600 dark:text-white">
       {/* Thumbnail */}
       <img src={thumbnail} alt={title} className="rounded-lg w-full h-52 " />
       {/* Card Content */}
       <div className="flex flex-col flex-grow mt-4">
-        <h3 className="text-lg font-semibold text-gray-800 capitalize">
+        <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-100 capitalize">
           {title}
         </h3>
-        <p className="text-sm text-gray-500 mt-1 capitalize">Category: {formattedCategory}</p>
+        <p className="text-sm text-gray-500 mt-1 capitalize">
+          Category: {formattedCategory}
+        </p>
         <p className="text-sm text-gray-500 mt-1">Deadline: {deadline}</p>
         <p className="text-sm text-gray-500 mt-1">
           Volunteers Need: {volunteersNeeded}

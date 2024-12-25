@@ -47,7 +47,7 @@ const MyRequestPosts = () => {
   return (
     <div>
       <div className="flex gap-3 items-center">
-        <h2 className="text-xl font-semibold">Requested Posts</h2>
+        <h2 className="text-xl font-semibold dark:text-gray-200">Requested Posts</h2>
         <p className="text-center w-10 font-semibold bg-purple-200 text-purple-600 rounded-md">
           {myReqPost.length}
         </p>

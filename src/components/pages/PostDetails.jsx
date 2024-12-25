@@ -74,8 +74,8 @@ const PostDetails = () => {
   }, [volunteersNeeded]);
 
   return (
-    <div className=" mx-auto bg-gradient-to-br from-blue-50 via-white to-blue-100 rounded-xl shadow-xl overflow-hidden hover:shadow-2xl transition-shadow duration-300">
-      <div className="grid grid-cols-1 lg:grid-cols-2">
+    <div className="mx-auto bg-gradient-to-br from-blue-50 via-white to-blue-100 rounded-xl shadow-xl overflow-hidden hover:shadow-2xl transition-shadow duration-300 ">
+      <div className="grid grid-cols-1 lg:grid-cols-2 dark:bg-gray-800">
         {/* Image Section */}
         <div className="relative">
           <img
@@ -91,18 +91,20 @@ const PostDetails = () => {
         {/* Content Section */}
         <div className="p-8 flex flex-col justify-between">
           <div>
-            <h3 className="text-3xl font-extrabold text-blue-800 mb-4">
+            <h3 className="text-3xl font-extrabold text-blue-800 dark:text-blue-600 mb-4">
               {campaign.title}
             </h3>
-            <p className="text-gray-700 text-lg mb-6">{campaign.description}</p>
+            <p className="text-gray-700 text-lg mb-6 dark:text-gray-200">
+              {campaign.description}
+            </p>
             <div className="grid grid-cols-2 gap-4 mb-6">
               <div className="flex items-center space-x-2">
                 <FaMapMarkerAlt className="text-blue-600" />
                 <div>
-                  <p className="font-semibold text-gray-600 text-sm">
+                  <p className="font-semibold text-gray-600 text-sm dark:text-gray-200">
                     Location
                   </p>
-                  <p className="text-gray-800 text-base capitalize">
+                  <p className="text-gray-800 text-base capitalize dark:text-gray-200">
                     {campaign.location}
                   </p>
                 </div>
@@ -110,19 +112,21 @@ const PostDetails = () => {
               <div className="flex items-center space-x-2">
                 <FaCalendarAlt className="text-blue-600" />
                 <div>
-                  <p className="font-semibold text-gray-600 text-sm">
+                  <p className="font-semibold text-gray-600 text-sm dark:text-gray-200">
                     Deadline
                   </p>
-                  <p className="text-gray-800 text-base">{campaign.deadline}</p>
+                  <p className="text-gray-800 text-base dark:text-gray-200">
+                    {campaign.deadline}
+                  </p>
                 </div>
               </div>
               <div className="flex items-center space-x-2">
                 <FaUserAlt className="text-blue-600" />
                 <div>
-                  <p className="font-semibold text-gray-600 text-sm">
+                  <p className="font-semibold text-gray-600 text-sm dark:text-gray-200">
                     Organizer
                   </p>
-                  <p className="text-gray-800 text-base">
+                  <p className="text-gray-800 text-base dark:text-gray-200">
                     {campaign.organizerName}
                   </p>
                 </div>
@@ -130,10 +134,10 @@ const PostDetails = () => {
               <div className="flex items-center space-x-2">
                 <FaUserAlt className="text-blue-600" />
                 <div>
-                  <p className="font-semibold text-gray-600 text-sm">
+                  <p className="font-semibold text-gray-600 text-sm dark:text-gray-200">
                     Volunteers Needed
                   </p>
-                  <p className="text-gray-800 text-base font-bold">
+                  <p className="text-gray-800 text-base font-bold dark:text-gray-200">
                     {volunteersNeeded}
                   </p>
                 </div>
@@ -144,7 +148,9 @@ const PostDetails = () => {
           {/* Volunteer Button */}
           <button
             onClick={handleModal}
-            className="mt-6 w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white py-3 text-lg font-semibold rounded-lg hover:from-blue-600 hover:to-purple-700 shadow-lg transition duration-300"
+            className="mt-6 w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white py-3 text-lg font-semibold rounded-lg hover:from-blue-600 hover:to-purple-700 shadow-lg transition duration-300 
+            dark:bg-gradient-to-r dark:from-blue-900 dark:to-blue-500 dark:text-white
+            "
           >
             Be a Volunteer
           </button>
@@ -154,7 +160,7 @@ const PostDetails = () => {
       {/* You can open the modal using document.getElementById('ID').showModal() method */}
 
       <dialog id="my_modal_3" className="modal">
-        <div className="modal-box border border-gray-200 shadow-lg max-w-5xl">
+        <div className="modal-box border border-gray-200 dark:bg-gray-800 dark:text-gray-200 shadow-lg max-w-5xl">
           <form method="dialog">
             <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
               ✕
@@ -162,7 +168,11 @@ const PostDetails = () => {
           </form>
 
           {/* Thumbnail Card */}
-          <div className="p-4 bg-gradient-to-r from-blue-100 to-white rounded-lg shadow-md mb-6 flex flex-wrap lg:flex-nowrap items-center gap-4">
+          <div
+            className="p-4 bg-gradient-to-r from-blue-100 to-white rounded-lg shadow-md mb-6 flex flex-wrap lg:flex-nowrap items-center gap-4
+          dark:bg-gradient-to-r dark:from-blue-400 dark:to-blue-300
+          "
+          >
             <img
               src={campaign?.thumbnail}
               alt={campaign?.title}
@@ -207,56 +217,56 @@ const PostDetails = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {/* Volunteer Info */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-sm font-medium text-gray-700 mb-1 dark:text-gray-200">
                   Volunteer Name
-                </label>
+                </label>{" "}
                 <input
                   type="text"
                   value={user?.displayName || ""}
                   readOnly
                   disabled
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg bg-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg bg-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-blue-700"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-sm font-medium text-gray-700 mb-1 dark:text-gray-200">
                   Volunteer Email
                 </label>
                 <input
                   type="email"
                   value={user?.email || ""}
                   readOnly
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg bg-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg bg-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-blue-700"
                 />
               </div>
               {/* Organizer Info */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-sm font-medium text-gray-700 mb-1 dark:text-gray-200">
                   Organizer Name
                 </label>
                 <input
                   type="text"
                   value={campaign?.organizerName || ""}
                   readOnly
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg bg-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg bg-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-blue-700"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-sm font-medium text-gray-700 mb-1 dark:text-gray-200">
                   Organizer Email
                 </label>
                 <input
                   type="email"
                   value={campaign?.organizerEmail || ""}
                   readOnly
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg bg-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg bg-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-blue-700"
                 />
               </div>
             </div>
 
             {/* Suggestion Box */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-sm font-medium text-gray-700 mb-1 dark:text-gray-200">
                 Suggestion
               </label>
               <textarea
@@ -264,7 +274,7 @@ const PostDetails = () => {
                 onChange={(e) => setSuggestion(e.target.value)}
                 rows="4"
                 placeholder="Enter your suggestion here..."
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg bg-white focus:ring-2 focus:ring-green-500 focus:border-green-500"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg bg-white focus:ring-2 focus:ring-green-500 focus:border-green-500 dark:bg-gray-800 dark:border-blue-700"
                 required
               />
             </div>

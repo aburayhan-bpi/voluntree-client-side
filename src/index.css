@@ -10,5 +10,7 @@ body {
 
 a.active {
   color: blueviolet;
+  background-color: aqua;
+  padding: 4px;
+  border-radius: 4px;
 }
-
