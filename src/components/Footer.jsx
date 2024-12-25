@@ -1,21 +1,22 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
     <footer className="mt-72 bg-green-300 dark:bg-gray-800 dark:text-gray-300 bottom-0">
       <div className="container flex flex-col p-4 mx-auto md:p-8 lg:flex-row dark:divide-gray-600">
         <ul className="self-center py-6 space-y-4 text-center sm:flex sm:space-y-0 sm:justify-around sm:space-x-4 lg:flex-1 lg:justify-start">
-          <li>Shop</li>
-          <li>About</li>
-          <li>Blog</li>
-          <li>Pricing</li>
+          <li>Home</li>
+          <Link to="/register">SignUp</Link>
+          <Link to="/login">SignIn</Link>
+          <Link to="/all-volunteers">Search Volunteer Post</Link>
           <li>Contact</li>
         </ul>
         <div className="flex flex-col justify-center pt-6 lg:pt-0">
           <div className="flex justify-center space-x-4">
             <a
               rel="noopener noreferrer"
-              href="#"
+              href="https://instagram.com"
               title="Instagram"
               className="flex items-center justify-center w-8 h-8 rounded-full sm:w-10 sm:h-10 dark:bg-violet-600 dark:text-gray-50"
             >
@@ -30,7 +31,7 @@ const Footer = () => {
             </a>
             <a
               rel="noopener noreferrer"
-              href="#"
+              href="https://pinterest.com"
               title="Pinterest"
               className="flex items-center justify-center w-8 h-8 rounded-full sm:w-10 sm:h-10 dark:bg-violet-600 dark:text-gray-50"
             >
@@ -45,7 +46,7 @@ const Footer = () => {
             </a>
             <a
               rel="noopener noreferrer"
-              href="#"
+              href="https://twitter.com"
               title="Twitter"
               className="flex items-center justify-center w-8 h-8 rounded-full sm:w-10 sm:h-10 dark:bg-violet-600 dark:text-gray-50"
             >
@@ -60,7 +61,7 @@ const Footer = () => {
             </a>
             <a
               rel="noopener noreferrer"
-              href="#"
+              href="https://facebook.com"
               title="Facebook"
               className="flex items-center justify-center w-8 h-8 rounded-full sm:w-10 sm:h-10 dark:bg-violet-600 dark:text-gray-50"
             >
@@ -75,7 +76,7 @@ const Footer = () => {
             </a>
             <a
               rel="noopener noreferrer"
-              href="#"
+              href="https://gmail.com"
               title="Gmail"
               className="flex items-center justify-center w-8 h-8 rounded-full sm:w-10 sm:h-10 dark:bg-violet-600 dark:text-gray-50"
             >
