@@ -8,3 +8,5 @@ export const fetchSinglePostData = async ({ params }) => {
     }
     return response.json()
 }
+
+

@@ -1,21 +1,26 @@
 import React, { useEffect, useState } from "react";
 import { FaCalendarAlt, FaMapMarkerAlt, FaUserAlt } from "react-icons/fa";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useParams } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import { TbCategory } from "react-icons/tb";
 import axios from "axios";
 import Swal from "sweetalert2";
 import toast from "react-hot-toast";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const PostDetails = () => {
   document.title = "Post Details | Voluntree";
-  const { user } = useAuth();
-  const campaign = useLoaderData();
 
+  const { id } = useParams();
+  // console.log(id);
+
+  const { user } = useAuth();
+  const axiosSecure = useAxiosSecure();
+  // const campaign = useLoaderData();
+  const [campaign, setCampaign] = useState([]);
+  // console.log(campaign?.volunteersNeeded);
   //   states
-  const [volunteersNeeded, setVolunteersNeeded] = useState(
-    campaign.volunteersNeeded
-  );
+  const [volunteersNeeded, setVolunteersNeeded] = useState(0);
   const [suggestion, setSuggestion] = useState("");
   const [status, setStatus] = useState("requested");
 
@@ -69,9 +74,19 @@ const PostDetails = () => {
     document.getElementById("my_modal_3").close();
   };
 
+  // Fetch campaign details
   useEffect(() => {
-    // console.log("Updated volunteersNeeded:", volunteersNeeded);
-  }, [volunteersNeeded]);
+    axiosSecure.get(`/post-details/${id}`).then((res) => {
+      setCampaign(res.data);
+    });
+  }, [id, axiosSecure]);
+
+  // Update volunteersNeeded whenever campaign changes
+  useEffect(() => {
+    if (campaign.volunteersNeeded !== undefined) {
+      setVolunteersNeeded(campaign.volunteersNeeded);
+    }
+  }, [campaign]);
 
   return (
     <div className="mx-auto bg-gradient-to-br from-blue-50 via-white to-blue-100 rounded-xl shadow-xl overflow-hidden hover:shadow-2xl transition-shadow duration-300 ">

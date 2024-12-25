@@ -55,8 +55,8 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
-      console.log(currentUser);
-      console.log(currentUser?.email);
+      // console.log(currentUser);
+      // console.log(currentUser?.email);
       if (currentUser?.email) {
         const user = { user: currentUser?.email };
         axios
@@ -64,14 +64,14 @@ const AuthProvider = ({ children }) => {
             withCredentials: true,
           })
           .then((res) => {
-            console.log("user login:", res.data);
+            // console.log("user login:", res.data);
             setLoading(false);
           });
       } else {
         axios
           .post("http://localhost:5000/logout", {}, { withCredentials: true })
           .then((res) => {
-            console.log("user logged out: ", res.data);
+            // console.log("user logged out: ", res.data);
             setLoading(false);
           });
       }

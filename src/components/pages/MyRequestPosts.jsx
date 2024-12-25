@@ -2,19 +2,21 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const MyRequestPosts = () => {
   document.title = "Request Posts | Voluntree";
   const { user } = useAuth();
   const [myReqPost, setMyReqPost] = useState([]);
+  const axiosSecure = useAxiosSecure();
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:5000/myReqPosts?email=${user?.email}`, {withCredentials: true})
-      .then((res) => {
-        setMyReqPost(res.data);
-        console.log(res.data);
-      });
+    // axios
+    //   .get(`http://localhost:5000/myReqPosts?email=${user?.email}`, {withCredentials: true})
+    axiosSecure.get(`/myReqPosts?email=${user?.email}`).then((res) => {
+      setMyReqPost(res.data);
+      // console.log(res.data);
+    });
   }, []);
   //   console.log(myReqPost);
 

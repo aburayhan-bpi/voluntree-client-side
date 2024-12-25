@@ -5,11 +5,13 @@ import { AuthContext } from "../providers/AuthProvider";
 import Swal from "sweetalert2";
 import toast from "react-hot-toast";
 import axios from "axios";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const AddVolunteer = () => {
   document.title = "Add Volunteer | Voluntree";
   const [deadline, setDeadline] = useState(new Date());
   const { user } = useContext(AuthContext);
+  const axiosSecure = useAxiosSecure();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -49,7 +51,11 @@ const AddVolunteer = () => {
 
           // console.log("Post Data:", postData);
 
-          axios.post("http://localhost:5000/posts", postData, {withCredentials: true}).then((res) => {
+          // axios
+          //   .post("http://localhost:5000/posts", postData, {
+          //     withCredentials: true,
+          //   })
+          axiosSecure.post(`/posts`, postData).then((res) => {
             // console.log(res.data);
             if (res.data.acknowledged) {
               Swal.fire({

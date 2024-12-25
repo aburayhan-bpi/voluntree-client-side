@@ -3,11 +3,13 @@ import React, { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const MyVolunteerPosts = () => {
   document.title = "Volunteer Posts | Voluntree";
   const { user } = useAuth();
   const [myVoluntPost, setMyVoluntPost] = useState([]);
+  const axiosSecure = useAxiosSecure();
   // console.log("User Email:", user?.email);
 
   //  .get(`http://localhost:5000/posts?email=${user?.email}`, {
@@ -15,14 +17,14 @@ const MyVolunteerPosts = () => {
   //       })
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:5000/myPosts?email=${user?.email}`, {
-        withCredentials: true,
-      })
-      .then((res) => {
-        // console.log(res.data);
-        setMyVoluntPost(res.data);
-      });
+    // axios
+    //   .get(`http://localhost:5000/myPosts?email=${user?.email}`, {
+    //     withCredentials: true,
+    //   })
+    axiosSecure.get(`/myPosts?email=${user?.email}`).then((res) => {
+      // console.log(res.data);
+      setMyVoluntPost(res.data);
+    });
   }, []);
   // console.log(myVoluntPost);
 

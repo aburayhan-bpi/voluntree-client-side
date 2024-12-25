@@ -5,11 +5,13 @@ import DatePicker from "react-datepicker";
 import toast from "react-hot-toast";
 import axios from "axios";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const UpdatePostPage = () => {
   document.title = "Update Post | Voluntree";
   const navigate = useNavigate();
   const { user } = useAuth();
+  const axiosSecure = useAxiosSecure();
   const loadedData = useLoaderData();
   const [myData, setMyData] = useState(loadedData);
   const [deadline, setDeadline] = useState(new Date()); // Default to current date
@@ -64,19 +66,19 @@ const UpdatePostPage = () => {
     };
 
     // console.log("Post Data:", postData);
-    axios
-      .patch(`http://localhost:5000/posts/${myData?._id}`, postData)
-      .then((res) => {
-        // console.log(res.data);
-        if (res.data.acknowledged) {
-          Swal.fire({
-            title: "Post updated successfully!",
-            icon: "success",
-          });
-          formElement.reset();
-          navigate("/manage-posts");
-        }
-      });
+    // axios
+    //   .patch(`http://localhost:5000/posts/${myData?._id}`, postData, {withCredentials: true})
+    axiosSecure.patch(`/posts/${myData?._id}`, postData).then((res) => {
+      // console.log(res.data);
+      if (res.data.acknowledged) {
+        Swal.fire({
+          title: "Post updated successfully!",
+          icon: "success",
+        });
+        formElement.reset();
+        navigate("/manage-posts");
+      }
+    });
   };
   //   console.log(myData?.category);
   return (
