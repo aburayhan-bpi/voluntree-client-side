@@ -11,8 +11,6 @@ import { Navigation, Autoplay } from "swiper/modules";
 import BannerCard from "./BannerCard";
 
 const Banner = ({ bannerPosts }) => {
-  const { user, themeToggle } = useState();
-  // console.log(bannerPosts);
   return (
     <div>
       <Swiper

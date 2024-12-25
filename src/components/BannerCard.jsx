@@ -4,7 +4,7 @@ import useAuth from "../hooks/useAuth";
 const BannerCard = ({ singlePost }) => {
   const { user, themeToggle } = useAuth();
   return (
-    <div className="w-full bg-gray-100 bg-opacity-10 rounded-lg">
+    <div className="relative w-full bg-gray-100 bg-opacity-10 rounded-lg">
       <div
         className={
           themeToggle
@@ -12,28 +12,23 @@ const BannerCard = ({ singlePost }) => {
             : "w-full overflow-hidden rounded-lg shadow-md"
         }
       >
-        <img
-          src={singlePost?.thumbnail}
-          alt={singlePost?.title}
-          className="w-full h-96 object-fit rounded-t-lg"
-        />
+        {/* Image Container with Text Overlay */}
+        <div className="relative">
+          <img
+            src={singlePost?.thumbnail}
+            alt={singlePost?.title}
+            className="w-full h-96  rounded-t-lg"
+          />
+          <div className="absolute inset-0 bg-black/40 flex flex-col justify-end text-white p-4">
+            <h2 className="text-2xl font-bold">{singlePost?.title}</h2>
+            <p className="text-base mt-2 font-semibold">
+              Volunteers Needed: {singlePost?.volunteersNeeded}
+            </p>
+          </div>
+        </div>
+
+        {/* Content Below Image */}
         <div className="p-4 rounded-b-lg">
-          <h2
-            className={
-              themeToggle
-                ? "text-xl font-semibold  text-black"
-                : "text-xl font-semibold  text-white"
-            }
-          >
-            {singlePost?.title}
-          </h2>
-          <p
-            className={
-              themeToggle ? "text-sm text-black" : "text-sm text-white"
-            }
-          >
-            {singlePost?.genre}
-          </p>
           <div className="flex justify-between items-center mt-2">
             <div className="flex items-center">
               <div className="rating rating-sm">
