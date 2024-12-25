@@ -12,7 +12,7 @@ const MyRequestPosts = () => {
 
   useEffect(() => {
     // axios
-    //   .get(`http://localhost:5000/myReqPosts?email=${user?.email}`, {withCredentials: true})
+    //   .get(`https://voluntree-server-side.vercel.app/myReqPosts?email=${user?.email}`, {withCredentials: true})
     axiosSecure.get(`/myReqPosts?email=${user?.email}`).then((res) => {
       setMyReqPost(res.data);
       // console.log(res.data);
@@ -31,16 +31,18 @@ const MyRequestPosts = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        axios.delete(`http://localhost:5000/reqPosts/${id}`).then((res) => {
-          // console.log(res.data);
-          Swal.fire({
-            title: "Deleted!",
-            text: "Request has been deleted.",
-            icon: "success",
+        axios
+          .delete(`https://voluntree-server-side.vercel.app/reqPosts/${id}`)
+          .then((res) => {
+            // console.log(res.data);
+            Swal.fire({
+              title: "Deleted!",
+              text: "Request has been deleted.",
+              icon: "success",
+            });
+            const remaining = myReqPost.filter((prev) => prev._id !== id);
+            setMyReqPost(remaining);
           });
-          const remaining = myReqPost.filter((prev) => prev._id !== id);
-          setMyReqPost(remaining);
-        });
       }
     });
 

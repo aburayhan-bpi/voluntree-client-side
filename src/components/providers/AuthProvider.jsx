@@ -60,7 +60,7 @@ const AuthProvider = ({ children }) => {
       if (currentUser?.email) {
         const user = { user: currentUser?.email };
         axios
-          .post("http://localhost:5000/jwt", user, {
+          .post("https://voluntree-server-side.vercel.app/jwt", user, {
             withCredentials: true,
           })
           .then((res) => {
@@ -69,7 +69,11 @@ const AuthProvider = ({ children }) => {
           });
       } else {
         axios
-          .post("http://localhost:5000/logout", {}, { withCredentials: true })
+          .post(
+            "https://voluntree-server-side.vercel.app/logout",
+            {},
+            { withCredentials: true }
+          )
           .then((res) => {
             // console.log("user logged out: ", res.data);
             setLoading(false);

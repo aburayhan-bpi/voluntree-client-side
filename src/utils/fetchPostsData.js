@@ -1,5 +1,5 @@
 export const fetchPostsData = async () => {
-    const response = await fetch('http://localhost:5000/posts')
+    const response = await fetch('https://voluntree-server-side.vercel.app/posts')
     if (!response.ok) {
         throw new Error('Failed to fetch posts data')
     }

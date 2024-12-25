@@ -67,7 +67,7 @@ const UpdatePostPage = () => {
 
     // console.log("Post Data:", postData);
     // axios
-    //   .patch(`http://localhost:5000/posts/${myData?._id}`, postData, {withCredentials: true})
+    //   .patch(`https://voluntree-server-side.vercel.app/posts/${myData?._id}`, postData, {withCredentials: true})
     axiosSecure.patch(`/posts/${myData?._id}`, postData).then((res) => {
       // console.log(res.data);
       if (res.data.acknowledged) {

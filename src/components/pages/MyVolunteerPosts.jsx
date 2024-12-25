@@ -12,13 +12,13 @@ const MyVolunteerPosts = () => {
   const axiosSecure = useAxiosSecure();
   // console.log("User Email:", user?.email);
 
-  //  .get(`http://localhost:5000/posts?email=${user?.email}`, {
+  //  .get(`https://voluntree-server-side.vercel.app/posts?email=${user?.email}`, {
   //         withCredentials: true,
   //       })
 
   useEffect(() => {
     // axios
-    //   .get(`http://localhost:5000/myPosts?email=${user?.email}`, {
+    //   .get(`https://voluntree-server-side.vercel.app/myPosts?email=${user?.email}`, {
     //     withCredentials: true,
     //   })
     axiosSecure.get(`/myPosts?email=${user?.email}`).then((res) => {
@@ -42,16 +42,18 @@ const MyVolunteerPosts = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        axios.delete(`http://localhost:5000/posts/${id}`).then((res) => {
-          // console.log(res.data);
-          Swal.fire({
-            title: "Deleted!",
-            text: "Request has been deleted.",
-            icon: "success",
+        axios
+          .delete(`https://voluntree-server-side.vercel.app/posts/${id}`)
+          .then((res) => {
+            // console.log(res.data);
+            Swal.fire({
+              title: "Deleted!",
+              text: "Request has been deleted.",
+              icon: "success",
+            });
+            const remaining = myVoluntPost.filter((prev) => prev._id !== id);
+            setMyVoluntPost(remaining);
           });
-          const remaining = myVoluntPost.filter((prev) => prev._id !== id);
-          setMyVoluntPost(remaining);
-        });
       }
     });
   };
