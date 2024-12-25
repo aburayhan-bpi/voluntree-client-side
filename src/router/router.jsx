@@ -47,7 +47,7 @@ const router = createBrowserRouter([
             <PostDetails></PostDetails>
           </PrivateRoute>
         ),
-        loader: fetchSinglePostData,
+        // loader: fetchSinglePostData,
       },
       {
         path: "/add-volunteer",

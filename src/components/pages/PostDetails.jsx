@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { FaCalendarAlt, FaMapMarkerAlt, FaUserAlt } from "react-icons/fa";
-import { useLoaderData, useParams } from "react-router-dom";
+import { useLoaderData, useNavigate, useParams } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import { TbCategory } from "react-icons/tb";
 import axios from "axios";
@@ -15,6 +15,7 @@ const PostDetails = () => {
   // console.log(id);
 
   const { user } = useAuth();
+  const navigate = useNavigate();
   const axiosSecure = useAxiosSecure();
   // const campaign = useLoaderData();
   const [campaign, setCampaign] = useState([]);
