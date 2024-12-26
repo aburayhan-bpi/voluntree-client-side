@@ -9,27 +9,21 @@ const MyVolunteerPosts = () => {
   document.title = "Volunteer Posts | Voluntree";
   const { user } = useAuth();
   const [myVoluntPost, setMyVoluntPost] = useState([]);
+  const [loading, setLoading] = useState(true); // Loading state
   const axiosSecure = useAxiosSecure();
-  // console.log("User Email:", user?.email);
-
-  //  .get(`https://voluntree-server-side.vercel.app/posts?email=${user?.email}`, {
-  //         withCredentials: true,
-  //       })
 
   useEffect(() => {
-    // axios
-    //   .get(`https://voluntree-server-side.vercel.app/myPosts?email=${user?.email}`, {
-    //     withCredentials: true,
-    //   })
-    axiosSecure.get(`/myPosts?email=${user?.email}`).then((res) => {
-      // console.log(res.data);
-      setMyVoluntPost(res.data);
-    });
+    setLoading(true); // Set loading to true before fetching
+    axiosSecure
+      .get(`/myPosts?email=${user?.email}`)
+      .then((res) => {
+        setMyVoluntPost(res.data);
+        setLoading(false); // Set loading to false after fetching
+      })
+      .catch(() => {
+        setLoading(false); // Stop loader if there's an error
+      });
   }, []);
-  // console.log(myVoluntPost);
-
-  // handle update
-  // const handleUpdate = (id) => {};
 
   const handleDelete = (id) => {
     Swal.fire({
@@ -45,7 +39,6 @@ const MyVolunteerPosts = () => {
         axios
           .delete(`https://voluntree-server-side.vercel.app/posts/${id}`)
           .then((res) => {
-            // console.log(res.data);
             Swal.fire({
               title: "Deleted!",
               text: "Request has been deleted.",
@@ -68,83 +61,92 @@ const MyVolunteerPosts = () => {
           {myVoluntPost.length}
         </p>
       </div>
+
       <div className="mt-4">
-        <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-          {myVoluntPost.length === 0 ? (
-            <div>
-              <p className="rounded-lg text-red-500 font-semibold text-sm p-2">
-                No data available
-              </p>
-            </div>
-          ) : (
-            <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-              <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                <tr>
-                  <th scope="col" className="px-6 py-3">
-                    Thumbnail
-                  </th>
-                  <th scope="col" className="px-6 py-3">
-                    Title
-                  </th>
-                  <th scope="col" className="px-6 py-3">
-                    Volunteer Email
-                  </th>
-                  <th scope="col" className="px-6 py-3">
-                    Category
-                  </th>
-                  <th scope="col" className="px-6 py-3">
-                    Volunteers Need
-                  </th>
-                  <th scope="col" className="px-6 py-3">
-                    Action
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {myVoluntPost.map((singlePost) => (
-                  <tr
-                    key={singlePost?._id}
-                    className="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700"
-                  >
-                    <th
-                      scope="row"
-                      className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                    >
-                      <img
-                        className="w-32 rounded-md"
-                        src={singlePost?.thumbnail}
-                        alt="thumbnail"
-                      />
+        {loading ? ( // Show loader while loading
+          <div className="flex justify-center items-center">
+            <div className="loader border-t-4 border-blue-500 rounded-full w-12 h-12 animate-spin"></div>
+          </div>
+        ) : (
+          <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+            {myVoluntPost.length === 0 ? (
+              <div>
+                <p className="rounded-lg text-red-500 font-semibold text-sm p-2">
+                  No data available
+                </p>
+              </div>
+            ) : (
+              <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                  <tr>
+                    <th scope="col" className="px-6 py-3">
+                      Thumbnail
                     </th>
-                    <td className="px-6 py-4">{singlePost?.title}</td>
-                    <td className="px-6 py-4">{singlePost?.organizerEmail}</td>
-                    <td className="px-6 py-4 capitalize">
-                      {singlePost?.category}
-                    </td>
-                    <td className="px-6 py-4">
-                      <span className="bg-yellow-100 text-yellow-600 p-1 rounded-lg capitalize">
-                        {singlePost?.volunteersNeeded}
-                      </span>
-                    </td>
-                    <td className="px-6 py-4 flex gap-2">
-                      <Link to={`/posts/update/${singlePost?._id}`}>
-                        <button className="font-medium text-green-600 bg-green-100 hover:bg-green-200 p-1 rounded-md dark:text-red-500">
-                          Update
-                        </button>
-                      </Link>
-                      <button
-                        onClick={() => handleDelete(singlePost?._id)}
-                        className="font-medium text-red-600 bg-red-100 hover:bg-red-200 p-1 rounded-md dark:text-red-500"
-                      >
-                        Delete
-                      </button>
-                    </td>
+                    <th scope="col" className="px-6 py-3">
+                      Title
+                    </th>
+                    <th scope="col" className="px-6 py-3">
+                      Volunteer Email
+                    </th>
+                    <th scope="col" className="px-6 py-3">
+                      Category
+                    </th>
+                    <th scope="col" className="px-6 py-3">
+                      Volunteers Need
+                    </th>
+                    <th scope="col" className="px-6 py-3">
+                      Action
+                    </th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          )}
-        </div>
+                </thead>
+                <tbody>
+                  {myVoluntPost.map((singlePost) => (
+                    <tr
+                      key={singlePost?._id}
+                      className="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700"
+                    >
+                      <th
+                        scope="row"
+                        className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                      >
+                        <img
+                          className="w-32 rounded-md"
+                          src={singlePost?.thumbnail}
+                          alt="thumbnail"
+                        />
+                      </th>
+                      <td className="px-6 py-4">{singlePost?.title}</td>
+                      <td className="px-6 py-4">
+                        {singlePost?.organizerEmail}
+                      </td>
+                      <td className="px-6 py-4 capitalize">
+                        {singlePost?.category}
+                      </td>
+                      <td className="px-6 py-4">
+                        <span className="bg-yellow-100 text-yellow-600 p-1 rounded-lg capitalize">
+                          {singlePost?.volunteersNeeded}
+                        </span>
+                      </td>
+                      <td className="px-6 py-4 flex gap-2">
+                        <Link to={`/posts/update/${singlePost?._id}`}>
+                          <button className="font-medium text-green-600 bg-green-100 hover:bg-green-200 p-1 rounded-md dark:text-red-500">
+                            Update
+                          </button>
+                        </Link>
+                        <button
+                          onClick={() => handleDelete(singlePost?._id)}
+                          className="font-medium text-red-600 bg-red-100 hover:bg-red-200 p-1 rounded-md dark:text-red-500"
+                        >
+                          Delete
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            )}
+          </div>
+        )}
       </div>
     </div>
   );
