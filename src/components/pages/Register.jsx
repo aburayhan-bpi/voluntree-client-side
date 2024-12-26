@@ -8,7 +8,7 @@ import toast from "react-hot-toast";
 const Register = () => {
   document.title = "Register | Voluntree";
   const { createUser, updateUserProfile } = useAuth();
-  const [showPass, setShowPass] = useState(true);
+  const [showPass, setShowPass] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
   const navigate = useNavigate();
   // register

@@ -12,7 +12,7 @@ const Login = () => {
   const location = useLocation();
   // console.log(location);
   const { loginUser, googleLogin } = useAuth();
-  const [showPass, setShowPass] = useState(true);
+  const [showPass, setShowPass] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
 
   const handleLogin = (e) => {
