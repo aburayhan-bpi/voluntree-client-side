@@ -90,7 +90,7 @@ const router = createBrowserRouter([
             <UpdatePostPage></UpdatePostPage>
           </PrivateRoute>
         ),
-        loader: singlePostToUpdate,
+        // loader: singlePostToUpdate,
       },
     ],
   },
