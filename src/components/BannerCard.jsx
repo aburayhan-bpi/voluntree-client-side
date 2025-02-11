@@ -5,6 +5,7 @@ const BannerCard = ({ singlePost }) => {
   const { user, themeToggle } = useAuth();
   return (
     <div className="relative w-full bg-gray-100 bg-opacity-10 rounded-lg">
+      {/* <div className="relative w-full bg-gray-100 bg-opacity-10 rounded-lg"> */}
       <div
         className={
           themeToggle

@@ -15,7 +15,8 @@ const Banner = ({ bannerPosts }) => {
     <div>
       <Swiper
         navigation={true}
-        className="mySwiper rounded-lg h-96"
+        // h-96
+        className="mySwiper rounded-lg "
         autoplay={{
           delay: 3000,
           disableOnInteraction: false,
