@@ -7,14 +7,15 @@ import SocialServiceVolunteersNeed from "../SocialServiceVolunteersNeed";
 
 const Home = () => {
   document.title = "Home | Voluntree";
-  const loadedPosts = useLoaderData();
+  // const loadedPosts = useLoaderData();
 
-  const [posts, setPosts] = useState(loadedPosts);
+  // const [posts, setPosts] = useState(loadedPosts);
   // console.log(posts);
   return (
     <div>
       <div>
-        <Banner bannerPosts={posts}></Banner>
+        <Banner></Banner>
+        {/* <Banner bannerPosts={posts}></Banner> */}
       </div>
       {/* Volunteeer need now section */}
       <section>

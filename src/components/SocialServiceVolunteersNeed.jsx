@@ -20,7 +20,7 @@ const SocialServiceVolunteersNeed = () => {
   // console.log(needData);
 
   return (
-    <div className="bg-amber-200 p-3 rounded-lg mt-10 mb-4 dark:bg-gray-800 dark:text-gray-100">
+    <div className=" p-3 rounded-lg mt-10 mb-4 dark:bg-gray-800 dark:text-gray-100">
       <h2 className="text-center font-bold  text-4xl">
         Social Service Volunteer Needs
       </h2>
@@ -28,7 +28,7 @@ const SocialServiceVolunteersNeed = () => {
         Join hands in social service initiatives that transform lives and build
         stronger communities. Your time makes all the difference.
       </p>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4  p-4 rounded-md">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 p-4 rounded-md justify-center">
         {needData.map((singleData, index) => (
           <VolunteerCard
             key={index}
@@ -37,6 +37,7 @@ const SocialServiceVolunteersNeed = () => {
             category={singleData?.category}
             volunteersNeeded={singleData?.volunteersNeeded}
             deadline={singleData?.deadline}
+            description={singleData?.description}
             _id={singleData?._id}
           />
         ))}

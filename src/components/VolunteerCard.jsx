@@ -6,6 +6,7 @@ const VolunteerCard = ({
   title,
   category,
   deadline,
+  description,
   _id,
   volunteersNeeded,
 }) => {
@@ -17,21 +18,28 @@ const VolunteerCard = ({
       <img src={thumbnail} alt={title} className="rounded-lg w-full h-52 " />
       {/* Card Content */}
       <div className="flex flex-col flex-grow mt-4">
-        <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-100 capitalize">
+        <h3 className="text-base font-semibold text-gray-800 dark:text-gray-100 capitalize">
           {title}
         </h3>
-        <p className="text-sm text-gray-500 mt-1 capitalize">
-          Category: {formattedCategory}
-        </p>
-        <p className="text-sm text-gray-500 mt-1">Deadline: {deadline}</p>
-        <p className="text-sm text-gray-500 mt-1">
+        <div className="flex justify-between items-center my-2">
+          <p className="text-xs text-gray-500 bg-yellow-100 px-2 py-1 rounded-lg capitalize">
+            {formattedCategory}
+          </p>
+          <p className="text-xs text-gray-500 bg-red-200 px-2 py-1 rounded-lg">
+            {deadline}
+          </p>
+        </div>
+        <p className="text-xs text-gray-500 bg-lime-100 px-2 py-1 rounded-lg mt-1 w-fit">
           Volunteers Need: {volunteersNeeded}
+        </p>
+        <p className="truncate text-sm mt-2 text-gray-600 dark:text-white">
+          {description}
         </p>
       </div>
       {/* View Details Button */}
       <div className="mt-4">
         <Link to={`/post-details/${_id}`}>
-          <button className="bg-blue-500 text-white text-sm py-2 px-4 rounded-lg hover:bg-blue-600 w-full">
+          <button className="bg-green-500 text-white text-sm py-2 px-4 rounded-lg hover:bg-green-600 w-full transition-all duration-200">
             View Details
           </button>
         </Link>

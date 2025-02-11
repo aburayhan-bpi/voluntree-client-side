@@ -15,6 +15,7 @@ import ErrorPage from "../components/pages/ErrorPage";
 import UpdatePostPage from "../components/pages/UpdatePostPage";
 import { singlePostToUpdate } from "../utils/fetchSinglePostToUpdate";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
+import ContactUs from "../components/pages/ContactUs";
 
 const router = createBrowserRouter([
   {
@@ -39,6 +40,10 @@ const router = createBrowserRouter([
         path: "/all-volunteers",
         element: <AllVolunteers></AllVolunteers>,
         loader: fetchPostsData,
+      },
+      {
+        path: "/contact-us",
+        element: <ContactUs />,
       },
       {
         path: "/post-details/:id",

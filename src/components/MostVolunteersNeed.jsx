@@ -16,15 +16,15 @@ const MostVolunteersNeed = () => {
       });
   }, []);
   // console.log(needData);
-
+  // bg-amber-200
   return (
-    <div className="bg-amber-200 p-3 rounded-lg mt-10 mb-4 dark:bg-gray-800 dark:text-gray-100">
+    <div className=" p-3 rounded-lg mt-10 mb-4 dark:bg-gray-800 dark:text-gray-100">
       <h2 className="text-center font-bold  text-4xl">Most Volunteer Needs</h2>
       <p className="text-center max-w-3xl mx-auto my-3">
         Support the missions with the highest volunteer needs and help
         communities overcome their biggest challenges with collective strength.
       </p>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4  p-4 rounded-md">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 p-4 rounded-md justify-center">
         {needData.map((singleData, index) => (
           <VolunteerCard
             key={index}
@@ -33,6 +33,7 @@ const MostVolunteersNeed = () => {
             category={singleData?.category}
             volunteersNeeded={singleData?.volunteersNeeded}
             deadline={singleData?.deadline}
+            description={singleData?.description}
             _id={singleData?._id}
           />
         ))}

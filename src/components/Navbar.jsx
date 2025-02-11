@@ -70,6 +70,15 @@ const Navbar = () => {
             All Volunteers Need Posts
           </NavLink>
         </li>
+        <li>
+          <NavLink
+            to="/contact-us"
+            className="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500"
+            onClick={() => setIsMenuOpen(false)}
+          >
+            Contact Us
+          </NavLink>
+        </li>
         {!user && (
           <li className="md:hidden mt-2 md:mt-0">
             <div>
