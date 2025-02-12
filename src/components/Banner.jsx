@@ -12,6 +12,7 @@ import BannerCard from "./BannerCard";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
+import { FaArrowRight } from "react-icons/fa";
 
 const Banner = () => {
   const { data: allPosts = [] } = useQuery({
@@ -62,6 +63,10 @@ const Banner = () => {
                   <p className="text-xl">
                     Volunteers need: {singlePost?.volunteersNeeded}
                   </p>
+                  {/* <button className="p-2 border-2 border-green-600 text-green-600 rounded-lg flex items-center gap-2 group dark:bg-gray-800 dark:border-blue-600">
+                    <Link to="/all-volunteers">See AMore</Link>
+                    <FaArrowRight className="inline transition-transform transform group-hover:translate-x-1" />
+                  </button> */}
                 </div>
                 {/* </Link> */}
               </div>

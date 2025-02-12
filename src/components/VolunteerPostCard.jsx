@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const VolunteerPostCard = ({ singlePost, layout }) => {
+const VolunteerPostCard = ({ singlePost, layout, truncateText }) => {
   const {
     category,
     deadline,
@@ -39,7 +39,8 @@ const VolunteerPostCard = ({ singlePost, layout }) => {
             </span>
           </div>
           <p className="text-gray-700 text-base mb-4 flex-grow dark:text-gray-200">
-            {description}
+            {/* {description} */}
+            {truncateText(description, 80)}...
           </p>
           <div className="flex justify-between items-center text-gray-600">
             <div>
@@ -62,7 +63,7 @@ const VolunteerPostCard = ({ singlePost, layout }) => {
         </div>
         <div className="p-4 border-t border-gray-200 mt-auto">
           <Link to={`/post-details/${_id}`}>
-            <button className="w-full py-2 mt-4 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors duration-300">
+            <button className="w-full py-2 mt-4 bg-green-600 text-white font-semibold rounded-lg hover:bg-green-700 transition-colors duration-300">
               View Details
             </button>
           </Link>

@@ -165,11 +165,10 @@ const PostDetails = () => {
           </div>
 
           {/* Volunteer Button */}
+          {/* bg-gradient-to-r from-blue-500 to-purple-600 text-white py-3 text-lg font-semibold rounded-lg hover:from-blue-600 hover:to-purple-700 shadow-lg */}
           <button
             onClick={handleModal}
-            className="mt-6 w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white py-3 text-lg font-semibold rounded-lg hover:from-blue-600 hover:to-purple-700 shadow-lg transition duration-300 
-            dark:bg-gradient-to-r dark:from-blue-900 dark:to-blue-500 dark:text-white
-            "
+            className="mt-6 w-full text-white bg-green-500 py-3 text-lg font-semibold rounded-lg hover:bg-green-600 transition-all duration-200 dark:bg-gradient-to-r dark:from-blue-900 dark:to-blue-500 dark:text-white"
           >
             Be a Volunteer
           </button>

@@ -39,10 +39,14 @@ const MostVolunteersNeed = () => {
         ))}
       </div>
       <div>
-        <button className="p-2 border bg-blue-600 text-white rounded-lg flex items-center gap-2 group dark:bg-gray-800 dark:border-blue-600">
+        <button className="p-2 border-2 border-green-600 text-green-600 rounded-lg flex items-center gap-2 group dark:bg-gray-800 dark:border-blue-600">
           <Link to="/all-volunteers">See All</Link>
           <FaArrowRight className="inline transition-transform transform group-hover:translate-x-1" />
         </button>
+        {/* <button className="p-2 border bg-blue-600 text-white rounded-lg flex items-center gap-2 group dark:bg-gray-800 dark:border-blue-600">
+          <Link to="/all-volunteers">See All</Link>
+          <FaArrowRight className="inline transition-transform transform group-hover:translate-x-1" />
+        </button> */}
       </div>
     </div>
   );

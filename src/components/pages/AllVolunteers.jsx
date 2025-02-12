@@ -7,23 +7,29 @@ const AllVolunteers = () => {
   const loadedPosts = useLoaderData();
   const [posts, setPosts] = useState(loadedPosts);
   const [layout, setLayout] = useState("grid");
-  // console.log(layout);
-  // console.log(posts);
-
+  const [sortOption, setSortOption] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredPosts, setFilteredPosts] = useState(loadedPosts);
+  const [postLoading, setPostLoading] = useState(true);
   // console.log(filteredPosts);
   useEffect(() => {
     fetch(
-      `https://voluntree-server-side.vercel.app/posts?search=${searchQuery}`
+      `http://localhost:5000/posts?search=${searchQuery}&sortOption=${sortOption}`
     )
       .then((res) => res.json())
       .then((data) => {
         setFilteredPosts(data);
+        setPostLoading(false);
         // console.log(data);
       });
-  }, [searchQuery]);
+  }, [searchQuery, sortOption]);
 
+  // truncate text
+  const truncateText = (text, number) => {
+    const truncateString = text.substring(0, number);
+    console.log(truncateString);
+    return truncateString;
+  };
   return (
     <div>
       <div className="space-y-3 mt-4 mb-10 dark:text-gray-200 flex flex-col justify-center items-center">
@@ -46,9 +52,22 @@ const AllVolunteers = () => {
           className="p-2 border border-gray-300 rounded-md w-full dark:text-gray-200 dark:bg-gray-800"
         />
       </div>
-      <div className="flex justify-between">
-        <div></div>
-        <div className="flex space-x-2">
+
+      <div className="flex justify-between mb-4">
+        {/* Sorting Area Start */}
+        <div>
+          <select
+            id="productType"
+            onChange={(e) => setSortOption(e.target.value)}
+            className="mt-1 block w-fit rounded-md border p-2.5 text-gray-900 "
+          >
+            <option value="">Sort by Volunteers</option>
+            <option value="asc">Low to High</option>
+            <option value="desc">High to Low</option>
+          </select>
+        </div>
+        {/* Sorting Area End */}
+        <div className="flex space-x-2 h-fit">
           {/* Grid Layout Button */}
           <button
             onClick={() => setLayout("grid")}
@@ -93,32 +112,39 @@ const AllVolunteers = () => {
         </div>
       </div>
 
-      <p className="font-semibold dark:text-gray-200">
-        Total posts: {filteredPosts.length}
-      </p>
-      <div
-        className={`
+      {postLoading ? (
+        <div className="flex items-center justify-center">
+          <span className="loading loading-ring loading-lg bg-green-600"></span>
+        </div>
+      ) : (
+        <>
+          <p className="font-semibold dark:text-gray-200">
+            Total posts: {filteredPosts.length}
+          </p>
+          <div
+            className={`
           ${
             layout === "grid"
-              ? "grid gap-4 mt-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-center items-center"
+              ? "grid gap-4 mt-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-4 justify-center items-center"
               : "grid grid-cols-1 gap-4 mt-4 justify-center items-center"
           }
           
           
           
           `}
-      >
-        {layout === "grid" ? (
-          filteredPosts.map((singlePost) => (
-            <VolunteerPostCard
-              key={singlePost._id}
-              singlePost={singlePost}
-              layout={layout}
-            ></VolunteerPostCard>
-          ))
-        ) : (
-          <div>
-            {/* <div className="flex gap-3 items-center">
+          >
+            {layout === "grid" ? (
+              filteredPosts.map((singlePost) => (
+                <VolunteerPostCard
+                  key={singlePost._id}
+                  singlePost={singlePost}
+                  layout={layout}
+                  truncateText={truncateText}
+                ></VolunteerPostCard>
+              ))
+            ) : (
+              <div>
+                {/* <div className="flex gap-3 items-center">
               <h2 className="text-xl font-semibold dark:text-gray-200">
                 Requested Posts
               </h2>
@@ -126,95 +152,100 @@ const AllVolunteers = () => {
                 {myReqPost.length}
               </p>
             </div> */}
-            <div className="mt-4">
-              <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-                {filteredPosts.length === 0 ? (
-                  <div>
-                    <p className="rounded-lg text-red-500 font-semibold text-sm p-2">
-                      No data available
-                    </p>
+                <div className="mt-4">
+                  <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+                    {filteredPosts.length === 0 ? (
+                      <div>
+                        <p className="rounded-lg text-red-500 font-semibold text-sm p-2">
+                          No data available
+                        </p>
+                      </div>
+                    ) : (
+                      <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                        <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                          <tr>
+                            <th scope="col" className="px-6 py-3">
+                              Thumbnail
+                            </th>
+                            <th scope="col" className="px-6 py-3">
+                              Title
+                            </th>
+                            <th scope="col" className="px-6 py-3">
+                              Organizer Name
+                            </th>
+                            <th scope="col" className="px-6 py-3">
+                              Category
+                            </th>
+                            <th scope="col" className="px-6 py-3">
+                              Volunteers Needed
+                            </th>
+                            <th scope="col" className="px-6 py-3">
+                              Description
+                            </th>
+                            <th scope="col" className="px-6 py-3">
+                              Deadline
+                            </th>
+                            <th scope="col" className="px-6 py-3">
+                              View Details
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {filteredPosts.map((singlePost) => (
+                            <tr
+                              key={singlePost?._id}
+                              className="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700"
+                            >
+                              <th
+                                scope="row"
+                                className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                              >
+                                <img
+                                  className="w-32 rounded-md"
+                                  src={singlePost?.thumbnail}
+                                  alt=""
+                                />
+                              </th>
+                              <td className="px-6 py-4">{singlePost?.title}</td>
+                              <td className="px-6 py-4">
+                                {singlePost?.organizerName}
+                              </td>
+                              <td className="px-6 py-4 capitalize">
+                                {singlePost?.category}
+                              </td>
+                              <td className="px-6 py-4">
+                                <span className="bg-green-100 text-green-600 p-1 rounded-lg text-xs capitalize">
+                                  {singlePost?.volunteersNeeded}
+                                </span>
+                              </td>
+                              <td className="px-6 py-4">
+                                {/* {singlePost?.description} */}
+                                {truncateText(singlePost?.description, 80)}...
+                              </td>
+                              <td className="px-6 py-4">
+                                {singlePost?.deadline}
+                              </td>
+                              <td className="px-6 py-4">
+                                <Link to={`/post-details/${singlePost?._id}`}>
+                                  <button className="w-28 py-4 mt-4 bg-green-600 text-white font-semibold rounded-lg hover:bg-green-700 transition-colors duration-300">
+                                    View Details
+                                  </button>
+                                </Link>
+                              </td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    )}
                   </div>
-                ) : (
-                  <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                    <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                      <tr>
-                        <th scope="col" className="px-6 py-3">
-                          Thumbnail
-                        </th>
-                        <th scope="col" className="px-6 py-3">
-                          Title
-                        </th>
-                        <th scope="col" className="px-6 py-3">
-                          Organizer Name
-                        </th>
-                        <th scope="col" className="px-6 py-3">
-                          Category
-                        </th>
-                        <th scope="col" className="px-6 py-3">
-                          Volunteers Needed
-                        </th>
-                        <th scope="col" className="px-6 py-3">
-                          Description
-                        </th>
-                        <th scope="col" className="px-6 py-3">
-                          Deadline
-                        </th>
-                        <th scope="col" className="px-6 py-3">
-                          View Details
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {filteredPosts.map((singlePost) => (
-                        <tr
-                          key={singlePost?._id}
-                          className="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700"
-                        >
-                          <th
-                            scope="row"
-                            className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                          >
-                            <img
-                              className="w-32 rounded-md"
-                              src={singlePost?.thumbnail}
-                              alt=""
-                            />
-                          </th>
-                          <td className="px-6 py-4">{singlePost?.title}</td>
-                          <td className="px-6 py-4">
-                            {singlePost?.organizerName}
-                          </td>
-                          <td className="px-6 py-4 capitalize">
-                            {singlePost?.category}
-                          </td>
-                          <td className="px-6 py-4">
-                            <span className="bg-green-100 text-green-600 p-1 rounded-lg text-xs capitalize">
-                              {singlePost?.volunteersNeeded}
-                            </span>
-                          </td>
-                          <td className="px-6 py-4">
-                            {singlePost?.description}
-                          </td>
-                          <td className="px-6 py-4">{singlePost?.deadline}</td>
-                          <td className="px-6 py-4">
-                            <Link to={`/post-details/${singlePost?._id}`}>
-                              <button className="w-28 py-4 mt-4 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors duration-300">
-                                View Details
-                              </button>
-                            </Link>
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                )}
+                </div>
               </div>
-            </div>
-          </div>
-        )}
+            )}
 
-        {}
-      </div>
+            {}
+          </div>
+        </>
+      )}
     </div>
   );
 };

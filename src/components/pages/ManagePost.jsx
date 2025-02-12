@@ -1,12 +1,11 @@
 import { NavLink, Outlet } from "react-router-dom";
-import { useState } from "react";
 
 const ManagePost = () => {
   // document.title = "Manage Posts | Voluntree";
   return (
     <div className="md:flex min-h-screen rounded-r-2xl">
       {/* Sidebar */}
-      <div className="md:w-72 bg-gray-800 text-white p-4 shadow-md rounded-l-lg">
+      <div className="md:w-72 bg-green-600 text-white p-4 shadow-md rounded-l-lg">
         <h2 className="text-2xl font-bold mb-6">Manage Posts</h2>
         <ul className="menu space-y-2">
           <li>

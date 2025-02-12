@@ -29,7 +29,7 @@ const VolunteerCard = ({
             {deadline}
           </p>
         </div>
-        <p className="text-xs text-gray-500 bg-lime-100 px-2 py-1 rounded-lg mt-1 w-fit">
+        <p className="text-xs text-gray-500 bg-yellow-100 px-2 py-1 rounded-lg mt-1 w-fit">
           Volunteers Need: {volunteersNeeded}
         </p>
         <p className="truncate text-sm mt-2 text-gray-600 dark:text-white">
@@ -40,7 +40,7 @@ const VolunteerCard = ({
       <div className="mt-4">
         <Link to={`/post-details/${_id}`}>
           <button className="bg-green-500 text-white text-sm py-2 px-4 rounded-lg hover:bg-green-600 w-full transition-all duration-200">
-            View Details
+            See More
           </button>
         </Link>
       </div>

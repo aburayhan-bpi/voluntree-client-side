@@ -52,7 +52,7 @@ const MyRequestPosts = () => {
         <h2 className="text-xl font-semibold dark:text-gray-200">
           Requested Posts
         </h2>
-        <p className="text-center w-10 font-semibold bg-purple-200 text-purple-600 rounded-md">
+        <p className="text-center w-10 font-semibold bg-green-200 text-green-600 rounded-md">
           {myReqPost.length}
         </p>
       </div>
