@@ -14,7 +14,7 @@ const AllVolunteers = () => {
   // console.log(filteredPosts);
   useEffect(() => {
     fetch(
-      `http://localhost:5000/posts?search=${searchQuery}&sortOption=${sortOption}`
+      `https://voluntree-server-side.vercel.app/posts?search=${searchQuery}&sortOption=${sortOption}`
     )
       .then((res) => res.json())
       .then((data) => {
