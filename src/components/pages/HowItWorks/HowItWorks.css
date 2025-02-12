@@ -1,4 +1,4 @@
-.swiper-wrapper {
+/* .swiper-wrapper {
     height: fit-content !important;
     width: 100% !important;
 }
@@ -29,4 +29,4 @@ background: #1D4ED8;
 }
 .swiper-horizontal>.swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal, .swiper-pagination-custom, .swiper-pagination-fraction {
   bottom: var(--swiper-pagination-bottom,0px);
-}
+} */

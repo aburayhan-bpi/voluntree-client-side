@@ -25,7 +25,7 @@ const AboutUs = () => {
               <div className="w-full flex-col justify-center items-start gap-6 flex">
                 <div className="w-full justify-start items-center gap-8 grid md:grid-cols-2 grid-cols-1">
                   <div className="w-full h-full p-3.5 rounded-xl border border-gray-200 hover:border-gray-400 transition-all duration-700 ease-in-out flex-col justify-start items-start gap-2.5 inline-flex">
-                    <h4 className="text-gray-900 text-2xl font-bold font-manrope leading-9">
+                    <h4 className="text-gray-900 dark:text-gray-300 text-2xl font-bold font-manrope leading-9">
                       3+ Years
                     </h4>
                     <p className="text-gray-500 text-base font-normal leading-relaxed">
@@ -33,7 +33,7 @@ const AboutUs = () => {
                     </p>
                   </div>
                   <div className="w-full h-full p-3.5 rounded-xl border border-gray-200 hover:border-gray-400 transition-all duration-700 ease-in-out flex-col justify-start items-start gap-2.5 inline-flex">
-                    <h4 className="text-gray-900 text-2xl font-bold font-manrope leading-9">
+                    <h4 className="text-gray-900 dark:text-gray-300 text-2xl font-bold font-manrope leading-9">
                       125+ Projects
                     </h4>
                     <p className="text-gray-500 text-base font-normal leading-relaxed">
@@ -43,7 +43,7 @@ const AboutUs = () => {
                 </div>
                 <div className="w-full h-full justify-start items-center gap-8 grid md:grid-cols-2 grid-cols-1">
                   <div className="w-full p-3.5 rounded-xl border border-gray-200 hover:border-gray-400 transition-all duration-700 ease-in-out flex-col justify-start items-start gap-2.5 inline-flex">
-                    <h4 className="text-gray-900 text-2xl font-bold font-manrope leading-9">
+                    <h4 className="text-gray-900 dark:text-gray-300 text-2xl font-bold font-manrope leading-9">
                       26+ Awards
                     </h4>
                     <p className="text-gray-500 text-base font-normal leading-relaxed">
@@ -51,7 +51,7 @@ const AboutUs = () => {
                     </p>
                   </div>
                   <div className="w-full h-full p-3.5 rounded-xl border border-gray-200 hover:border-gray-400 transition-all duration-700 ease-in-out flex-col justify-start items-start gap-2.5 inline-flex">
-                    <h4 className="text-gray-900 text-2xl font-bold font-manrope leading-9">
+                    <h4 className="text-gray-900 dark:text-gray-300 text-2xl font-bold font-manrope leading-9">
                       35+ Sponsorship
                     </h4>
                     <p className="text-gray-500 text-base font-normal leading-relaxed">
@@ -74,7 +74,7 @@ const AboutUs = () => {
                     </button> */}
           </div>
           <div className="w-full lg:justify-start justify-center items-start flex">
-            <div className="sm:w-[564px] w-full sm:h-[646px] h-full sm:bg-gray-100 rounded-3xl sm:border border-gray-200 relative">
+            <div className="sm:w-[564px] w-full sm:h-[646px] h-full sm:bg-gray-100 dark:sm:bg-gray-500 dark:border-none rounded-3xl sm:border border-gray-200 relative">
               <img
                 className="sm:mt-5 sm:ml-5 w-full h-full rounded-3xl object-cover"
                 src="https://images.unsplash.com/photo-1578357078586-491adf1aa5ba?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"

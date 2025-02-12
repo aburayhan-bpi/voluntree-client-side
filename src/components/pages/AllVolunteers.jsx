@@ -49,7 +49,7 @@ const AllVolunteers = () => {
           placeholder="Search posts by title..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          className="p-2 border border-gray-300 rounded-md w-full dark:text-gray-200 dark:bg-gray-800"
+          className="p-2 border border-gray-300 dark:border-gray-700 rounded-md w-full dark:text-gray-200 dark:bg-gray-800"
         />
       </div>
 
@@ -59,7 +59,7 @@ const AllVolunteers = () => {
           <select
             id="productType"
             onChange={(e) => setSortOption(e.target.value)}
-            className="mt-1 block w-fit rounded-md border p-2.5 text-gray-900 "
+            className="mt-1 block w-fit rounded-md border p-2.5 text-gray-900 dark:text-white/90 dark:border-none dark:bg-gray-800"
           >
             <option value="">Sort by Volunteers</option>
             <option value="asc">Low to High</option>
@@ -71,7 +71,7 @@ const AllVolunteers = () => {
           {/* Grid Layout Button */}
           <button
             onClick={() => setLayout("grid")}
-            className="p-2 bg-gray-200 hover:bg-gray-300 rounded-lg shadow-sm transition"
+            className="p-2 bg-gray-200 hover:bg-gray-300 dark:bg-gray-800 dark:hover:bg-gray-700 rounded-lg shadow-sm transition"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -79,7 +79,7 @@ const AllVolunteers = () => {
               viewBox="0 0 24 24"
               strokeWidth="1.5"
               stroke="currentColor"
-              className="w-5 h-5 text-gray-600"
+              className="w-5 h-5 text-gray-600 dark:text-white"
             >
               <path
                 strokeLinecap="round"
@@ -92,7 +92,7 @@ const AllVolunteers = () => {
           {/* List Layout Button */}
           <button
             onClick={() => setLayout("table")}
-            className="p-2 bg-gray-200 hover:bg-gray-300 rounded-lg shadow-sm transition"
+            className="p-2 bg-gray-200 hover:bg-gray-300 dark:bg-gray-800 dark:hover:bg-gray-700 rounded-lg shadow-sm transition"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -100,7 +100,7 @@ const AllVolunteers = () => {
               viewBox="0 0 24 24"
               strokeWidth="1.5"
               stroke="currentColor"
-              className="w-5 h-5 text-gray-600"
+              className="w-5 h-5 text-gray-600 dark:text-white"
             >
               <path
                 strokeLinecap="round"
@@ -161,6 +161,7 @@ const AllVolunteers = () => {
                         </p>
                       </div>
                     ) : (
+                      // Table View
                       <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                         <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                           <tr>
@@ -214,7 +215,7 @@ const AllVolunteers = () => {
                                 {singlePost?.category}
                               </td>
                               <td className="px-6 py-4">
-                                <span className="bg-green-100 text-green-600 p-1 rounded-lg text-xs capitalize">
+                                <span className="bg-green-100 dark:bg-green-600 text-green-600 dark:text-green-100 p-1 rounded-lg text-xs capitalize">
                                   {singlePost?.volunteersNeeded}
                                 </span>
                               </td>
@@ -227,7 +228,7 @@ const AllVolunteers = () => {
                               </td>
                               <td className="px-6 py-4">
                                 <Link to={`/post-details/${singlePost?._id}`}>
-                                  <button className="w-28 py-4 mt-4 bg-green-600 text-white font-semibold rounded-lg hover:bg-green-700 transition-colors duration-300">
+                                  <button className="w-28 py-4 mt-4 bg-green-600 dark:bg-green-900 text-white font-semibold rounded-lg hover:bg-green-700 transition-colors duration-300">
                                     View Details
                                   </button>
                                 </Link>

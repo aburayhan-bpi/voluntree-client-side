@@ -48,7 +48,7 @@ const Navbar = () => {
       navigate("/");
     });
   };
-
+  // console.log(theme);
   const links = (
     <>
       <div className="md:flex items-center gap-6">
@@ -112,13 +112,13 @@ const Navbar = () => {
   );
   // max-w-screen-xl
   return (
-    <nav className="bg-white dark:bg-gray-900 fixed w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600">
+    <nav className="bg-white dark:bg-gray-900 fixed w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-800">
       <div className="container flex flex-wrap items-center justify-between mx-auto px-4 md:px-10 py-4">
         <Link
           to="/"
           className="flex items-center space-x-3 rtl:space-x-reverse"
         >
-          <img className="rounded-lg w-32" src="./mainLogo.png" alt="Logo" />
+          <img className="rounded-lg w-28" src="./mainLogo.png" alt="Logo" />
         </Link>
         <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
           {/* theme start */}

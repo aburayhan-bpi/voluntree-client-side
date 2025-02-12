@@ -13,7 +13,7 @@ const VolunteerCard = ({
   const formattedCategory = category.replace(/-/g, " ");
 
   return (
-    <div className="bg-white rounded-lg shadow-md p-4 flex flex-col justify-between h-full dark:bg-gray-800 dark:border dark:border-blue-600 dark:text-white">
+    <div className="bg-white rounded-lg shadow-md p-4 flex flex-col justify-between h-full dark:bg-gray-800  dark:text-white">
       {/* Thumbnail */}
       <img src={thumbnail} alt={title} className="rounded-lg w-full h-52 " />
       {/* Card Content */}
@@ -39,7 +39,7 @@ const VolunteerCard = ({
       {/* View Details Button */}
       <div className="mt-4">
         <Link to={`/post-details/${_id}`}>
-          <button className="bg-green-500 text-white text-sm py-2 px-4 rounded-lg hover:bg-green-600 w-full transition-all duration-200">
+          <button className="bg-green-500 dark:bg-green-800 dark:hover:bg-green-700 text-white text-sm py-2 px-4 rounded-lg hover:bg-green-600 w-full transition-all duration-200">
             See More
           </button>
         </Link>

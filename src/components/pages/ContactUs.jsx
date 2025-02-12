@@ -2,19 +2,23 @@ import React from "react";
 
 const ContactUs = () => {
   return (
-    <div className="grid sm:grid-cols-2 items-start gap-16 p-4 mx-auto max-w-4xl mt-14 bg-white font-[sans-serif]">
+    <div className="grid sm:grid-cols-2 items-start gap-16 p-4 mx-auto max-w-4xl mt-14 bg-white dark:bg-transparent">
       <div>
-        <h1 className="text-gray-800 text-3xl font-extrabold">Let's Talk</h1>
-        <p className="text-sm text-gray-500 mt-4">
+        <h1 className="text-gray-800 dark:text-white/90 text-3xl font-extrabold">
+          Let's Talk
+        </h1>
+        <p className="text-sm text-gray-500 dark:text-gray-400 mt-4">
           Have some big idea or brand to develop and need help? Then reach out
           we'd love to hear about your project and provide help.
         </p>
 
         <div className="mt-12">
-          <h2 className="text-gray-800 text-base font-bold">Email</h2>
+          <h2 className="text-gray-800 dark:text-white/90 text-base font-bold">
+            Email
+          </h2>
           <ul className="mt-4">
             <li className="flex items-center">
-              <div className="bg-[#e6e6e6cf] h-10 w-10 rounded-full flex items-center justify-center shrink-0">
+              <div className="bg-[#e6e6e6cf] dark:bg-gray-700 h-10 w-10 rounded-full flex items-center justify-center shrink-0">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="20px"
@@ -28,7 +32,10 @@ const ContactUs = () => {
                   />
                 </svg>
               </div>
-              <a href="javascript:void(0)" className="text-[#007bff] text-sm ml-4">
+              <a
+                href="javascript:void(0)"
+                className="text-[#007bff] dark:text-gray-400 text-sm ml-4"
+              >
                 <small className="block">Mail</small>
                 <strong>voluntree.demo@gmail.com</strong>
               </a>
@@ -37,10 +44,12 @@ const ContactUs = () => {
         </div>
 
         <div className="mt-12">
-          <h2 className="text-gray-800 text-base font-bold">Socials</h2>
+          <h2 className="text-gray-800 dark:text-white/90 text-base font-bold">
+            Socials
+          </h2>
 
           <ul className="flex mt-4 space-x-4">
-            <li className="bg-[#e6e6e6cf] h-10 w-10 rounded-full flex items-center justify-center shrink-0">
+            <li className="bg-[#e6e6e6cf] dark:bg-gray-700 h-10 w-10 rounded-full flex items-center justify-center shrink-0">
               <a href="javascript:void(0)">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -56,7 +65,7 @@ const ContactUs = () => {
                 </svg>
               </a>
             </li>
-            <li className="bg-[#e6e6e6cf] h-10 w-10 rounded-full flex items-center justify-center shrink-0">
+            <li className="bg-[#e6e6e6cf] dark:bg-gray-700 h-10 w-10 rounded-full flex items-center justify-center shrink-0">
               <a href="javascript:void(0)">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -72,7 +81,7 @@ const ContactUs = () => {
                 </svg>
               </a>
             </li>
-            <li className="bg-[#e6e6e6cf] h-10 w-10 rounded-full flex items-center justify-center shrink-0">
+            <li className="bg-[#e6e6e6cf] dark:bg-gray-700 h-10 w-10 rounded-full flex items-center justify-center shrink-0">
               <a href="javascript:void(0)">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -93,26 +102,26 @@ const ContactUs = () => {
         <input
           type="text"
           placeholder="Name"
-          className="w-full rounded-md py-3 px-4 bg-gray-100 text-gray-800 text-sm outline-blue-500 focus:bg-transparent"
+          className="w-full rounded-md py-3 px-4 bg-gray-100 dark:bg-gray-800 dark:text-white text-gray-800 text-sm outline-blue-500 dark:outline-none focus:bg-transparent"
         />
         <input
           type="email"
           placeholder="Email"
-          className="w-full rounded-md py-3 px-4 bg-gray-100 text-gray-800 text-sm outline-blue-500 focus:bg-transparent"
+          className="w-full rounded-md py-3 px-4 bg-gray-100 dark:bg-gray-800 dark:text-white text-gray-800 text-sm outline-blue-500 dark:outline-none focus:bg-transparent"
         />
         <input
           type="text"
           placeholder="Subject"
-          className="w-full rounded-md py-3 px-4 bg-gray-100 text-gray-800 text-sm outline-blue-500 focus:bg-transparent"
+          className="w-full rounded-md py-3 px-4 bg-gray-100 dark:bg-gray-800 dark:text-white text-gray-800 text-sm outline-blue-500 dark:outline-none focus:bg-transparent"
         />
         <textarea
           placeholder="Message"
           rows="6"
-          className="w-full rounded-md px-4 bg-gray-100 text-gray-800 text-sm pt-3 outline-blue-500 focus:bg-transparent"
+          className="w-full rounded-md px-4 bg-gray-100 dark:bg-gray-800 dark:text-white text-gray-800 text-sm pt-3 outline-blue-500 dark:outline-none focus:bg-transparent"
         ></textarea>
         <button
           type="button"
-          className="text-white bg-blue-500 hover:bg-blue-600 tracking-wide rounded-md text-sm px-4 py-3 w-full !mt-6"
+          className="text-white bg-blue-500 hover:bg-blue-600 dark:bg-blue-900 dark:hover:bg-blue-800 transition-colors duration-300 tracking-wide rounded-md text-sm px-4 py-3 w-full !mt-6"
         >
           Send
         </button>

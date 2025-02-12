@@ -36,26 +36,32 @@ const FAQ = () => {
   ];
 
   return (
-    <section className="">
-      <div className="w-full max-w-7xl px-4 md:px-5 lg:px-5 mx-auto">
+    <section className="mt-10">
+      <div className="w-full max-w-6xl px-4 md:px-5 lg:px-5 mx-auto">
         <div className="w-full flex-col justify-start items-center lg:gap-12 gap-10 inline-flex">
           <div className="w-full flex-col justify-start items-center gap-3 flex">
-            <h2 className="w-full text-center text-gray-900 text-4xl font-bold font-manrope leading-normal">
+            <h2 className="w-full text-center text-gray-900 dark:text-white/90 text-4xl font-bold font-manrope leading-normal">
               Frequently Asked Questions (FAQ)
             </h2>
+            <p className="max-w-xl mx-auto text-center dark:text-white/80">
+              Find answers to common questions about Voluntree and how our
+              volunteer management system works.
+            </p>
           </div>
           <div className="w-full flex flex-col gap-6">
             {faqData.map((faq, index) => (
               <div
                 key={index}
-                className="collapse collapse-plus border border-base-300 rounded-lg"
+                className="collapse collapse-plus border border-base-300 dark:border-gray-700 rounded-lg"
               >
                 <input type="checkbox" className="peer" />
-                <div className="collapse-title text-xl font-medium bg-green-200 text-black">
+                <div className="collapse-title h-fit text-xl font-medium bg-green-200 dark:bg-green-800 text-black dark:text-white/90">
                   {faq.question}
                 </div>
-                <div className="collapse-content bg-green-100 p-4">
-                  <p className="text-gray-600">{faq.answer}</p>
+                <div className="collapse-content bg-green-100 dark:bg-green-700 p-4">
+                  <p className="text-gray-600 dark:text-white/80">
+                    {faq.answer}
+                  </p>
                 </div>
               </div>
             ))}

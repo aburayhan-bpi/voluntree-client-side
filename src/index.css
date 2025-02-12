@@ -16,3 +16,7 @@ a.active {
   padding: 4px;
   border-radius: 4px;
 }
+.dark a.active {
+  color: rgb(123, 233, 123); /* Change color for dark mode */
+  /* background-color: rgba(255, 255, 255, 0.1); */
+}
