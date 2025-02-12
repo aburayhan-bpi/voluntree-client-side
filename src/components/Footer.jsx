@@ -4,15 +4,24 @@ import { Link } from "react-router-dom";
 const Footer = () => {
   return (
     <>
-      <div className=" bg-green-300">
+      <div className=" bg-green-300 mt-24">
         <footer className="footer bg-green-300 text-base-content p-10 container mx-auto">
           <nav>
-            <h6 className="footer-title">Services</h6>
-            <Link className="link link-hover">Volunteer Posts</Link>
-            <Link className="link link-hover">Dashboard</Link>
+            <h6 className="footer-title text-green-800 opacity-100">
+              Services
+            </h6>
+            <Link to="/manage-posts" className="link link-hover">
+              Dashboard
+            </Link>
+            <Link to="/all-volunteers" className="link link-hover">
+              Volunteer Posts
+            </Link>
+            <Link to="/add-volunteer" className="link link-hover">
+              Add Volunteer Posts
+            </Link>
           </nav>
           <nav>
-            <h6 className="footer-title">Company</h6>
+            <h6 className="footer-title text-green-800 opacity-100">Company</h6>
             <Link to="about-us" className="link link-hover">
               About us
             </Link>
@@ -21,10 +30,10 @@ const Footer = () => {
             </Link>
           </nav>
           <nav>
-            <h6 className="footer-title">Legal</h6>
-            <Link className="link link-hover">Terms of use</Link>
-            <Link className="link link-hover">Privacy policy</Link>
-            <Link className="link link-hover">Cookie policy</Link>
+            <h6 className="footer-title text-green-800 opacity-100">Legal</h6>
+            <Link to='/terms-conditions' className="link link-hover">Terms of use</Link>
+            <Link to='/privacy-policy' className="link link-hover">Privacy policy</Link>
+            <Link to='/cookie-policy' className="link link-hover">Cookie policy</Link>
           </nav>
         </footer>
         <footer className="footer bg-green-300 text-base-content border-base-300 border-t px-10 py-4 container mx-auto">

@@ -16,6 +16,10 @@ import UpdatePostPage from "../components/pages/UpdatePostPage";
 import { singlePostToUpdate } from "../utils/fetchSinglePostToUpdate";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import ContactUs from "../components/pages/ContactUs";
+import AboutUs from "../components/pages/AboutUs";
+import TermsCondition from "../components/pages/LegalFooter/TermsCondition";
+import PrivacyPolicy from "../components/pages/LegalFooter/PrivacyPolicy";
+import CookiePolicy from "../components/pages/LegalFooter/CookiePolicy";
 
 const router = createBrowserRouter([
   {
@@ -44,6 +48,22 @@ const router = createBrowserRouter([
       {
         path: "/contact-us",
         element: <ContactUs />,
+      },
+      {
+        path: "/about-us",
+        element: <AboutUs />,
+      },
+      {
+        path: "/terms-conditions",
+        element: <TermsCondition />,
+      },
+      {
+        path: "/privacy-policy",
+        element: <PrivacyPolicy />,
+      },
+      {
+        path: "/cookie-policy",
+        element: <CookiePolicy />,
       },
       {
         path: "/post-details/:id",
